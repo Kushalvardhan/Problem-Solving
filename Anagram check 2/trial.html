@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anagram check-2</title>
+    <link rel="stylesheet" href="prism.css">
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1 class="section-title">Anagram check-2 (Optimised)</h1>
+        
+        <h2 class="section-title">Problem Statement:</h2>
+        <p>Given two strings containing only lowercase alphabates, determine if they are anagrams of each other.</p>
+        
+        <h2 class="section-title">Illustration:</h2>
+        <p>Consider the following examples:</p>
+        <div class="example">
+            <h3>Example 1:</h3>
+            <p>String 1: "listen"<br>String 2: "silent"</p>
+            <p>Explanation: Both strings contain the same characters with the same frequency, so they are anagrams.</p>
+        </div>
+        <div class="example">
+            <h3>Example 2:</h3>
+            <p>String 1: "hello"<br>String 2: "world"</p>
+            <p>Explanation: The characters and their frequencies in the two strings differ, so they are not anagrams.</p>
+        </div>
+        
+        <h2 class="section-title">Prerequisites:</h2>
+        <p>To understand and implement the solution, you should be familiar with the following concepts:</p>
+        <ul>
+            <li>Strings</li>
+            <li>Loops</li>
+            <li>arrays/lists (you can even do it with maps)</li>
+            <li>Conditional statements</li>
+        </ul>
+        
+        <h2 class="section-title">Solution:</h2>
+        <div class="solution">
+            <h3>Classic C Program:</h3>
+            <div class="line-numbers">
+                <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+void anagram(char *str1, char *str2);
+
+int main()
+{
+    int i, j;
+    char str1[80], str2[80];
+
+    printf("Enter string 1 : ");
+    gets(str1);
+
+    printf("Enter string 2 : ");
+    gets(str2);
+
+    for(i=0; str1[i]!='\0'; ++i){}
+    for(j=0; str2[j]!='\0'; ++j){}
+
+    if(i==j)
+        anagram(str1, str2);
+    else
+        printf("\nLengths are not equal\n");
+
+    return 0;
+}
+
+void anagram(char *str1, char *str2)
+{
+    int i, j, k;
+    int hash[26] = {0};
+
+    for(i=0; str1[i]!='\0'; ++i)
+    {
+        hash[str1[i]-97]++;
+    }
+    for(j=0; str2[j]!='\0'; ++j)
+    {
+        hash[str2[j]-97]--;
+    }
+    for(k=0; k<26; ++k)
+    {
+        if(hash[k]!=0)
+        {
+            printf("\nNot Anagrams!\n");
+            return;
+        }
+    }
+
+    printf("\nBoth are Anagrams\n");
+    return;
+}
+            </code></pre>
+            </div>
+            <h3>Python Solution :</h3>
+            <div class="line-numbers">
+                <pre><code class="language-python">
+def anagram(str1, str2):
+    hash = [0] * 26
+
+    for char in str1:
+        hash[ord(char) - 97] += 1
+    for char in str2:
+        hash[ord(char) - 97] -= 1
+    for value in hash:
+        if value != 0:
+            print("\nNot Anagrams!\n")
+            return
+
+    print("\nBoth are Anagrams\n")
+    return
+
+if __name__ == "__main__":
+    str1 = input("Enter string 1: ")
+    str2 = input("Enter string 2: ")
+
+    if len(str1) == len(str2):
+        anagram(str1, str2)
+    else:
+        print("\nLengths are not equal\n")
+                </code></pre>
+            </div>
+        </div>
+        
+        <h2 class="section-title">Explanation:</h2>
+        <p>
+            1. The program prompts the user to input two strings.<br>
+            2. It calculates the length of each string.<br>
+            3. If the lengths of the strings are unequal, it prints a message indicating this and exits.<br>
+            4. If the lengths are equal, it proceeds to check if the strings are anagrams.<br>
+            5. To do this, it initializes an array to keep track of the frequency of characters in the first string.<br>
+            6. It then iterates through the first string, incrementing the count for each character encountered.<br>
+            7. Next, it iterates through the second string, decrementing the count for each character encountered.<br>
+            8. After processing both strings, if any count in the array is non-zero, the strings are not anagrams, and it prints a message to that effect.<br>
+            9. If all counts are zero, it concludes that the strings are anagrams and prints a message indicating this.<br>
+        </p>
+            
+        <h2 class="section-title">Time and Space Complexity:</h2>
+        <p>The time complexity of the given logic is O(n), where n is the length of the longer string among the two input strings. 
+            This is because the program iterates through each character of both strings once to calculate the frequency of characters 
+            and then iterates through the hash array of size 26 (constant) to check if all elements are zero.
+            <br>
+            The space complexity of the logic is O(1), as the space required remains constant regardless of the input size. 
+            The space complexity is constant because the program uses a fixed-size array of length 26 to store the frequency of characters, 
+            irrespective of the length of the input strings. Additionally, the space used for storing the input strings is not considered in the 
+            space complexity analysis as it is input-dependent and not part of the algorithm's space requirements.</p>
+        
+        <h2 class="section-title">Challenge:</h2>
+        <p>Can you improve the solution to even work if the strings contain combination of lower case, upper case alphabates and special characters?</p>
+        <p><strong>Hint:</strong>Normalise the strings to either lower case or uppercase.</p>
+    </div>
+
+    <script src="prism.js"></script>
+</body>
+</html>

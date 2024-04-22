@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Array element</title>
+    <link rel="stylesheet" href="prism.css">
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1 class="section-title">Deletion in arrays</h1>
+        
+        <h2 class="section-title">Problem Statement:</h2>
+        <p>Read an array of integers from the user and read the position of the element to be deleted. output the resultant array after deletion.</p>
+        
+        <h2 class="section-title">What to do??</h2>
+            <div class="example">
+                <p>
+                <Strong>Input:</Strong><br>
+                Enter your array size : 10<br>
+                Enter array elements : 1 2 3 4 5 6 7 8 9 10<br>
+                Enter the position to delete : 3 (1 based index for user's feasibility)<br>
+                <br>
+                <Strong>Output: 1 2 4 5 6 7 8 9 10</Strong>
+                <br>
+                </p>
+            </div>
+
+        <h2 class="section-title">Prerequisites:</h2>
+        <p>To understand and implement the solution, you should be familiar with the following concepts:</p>
+        <ul>
+            <li>Arrays</li>
+            <li>Looping</li>
+        </ul>
+
+        <h2 class="section-title">Solution:</h2>
+        <div class="solution">
+            <h3>Classic C Program:</h3>
+            <div class="line-numbers">
+                <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#define MAX_SIZE 100
+
+int main(){
+    int arr[MAX_SIZE];
+    int i, size, value, pos;
+
+    printf("Enter number of elements  : ");
+    scanf("%d", &size);
+    printf("Enter array elements : ");
+
+    for (i=0; i&lt;size; ++i){
+        scanf("%d", &arr[i]);
+    }
+
+    printf("Enter the position to delete : ");
+    scanf("%d", &pos);
+    if(pos &lt; 0 || pos &gt; size){
+        printf("Invalid position! Please enter position between 1 to %d\n", size);
+    }
+    else{
+        for (i=pos; i&lt;size; ++i){
+            arr[i-1] = arr[i];
+        }
+
+        size--;
+
+        for (i=0; i&lt;size; ++i){
+            printf("%d ", arr[i]);
+        }
+    }
+    return 0;
+}
+            </code></pre>
+        </div>
+    </div>
+
+        <h2 class="section-title">Explanation:</h2>
+            <p>
+
+1) After validating the position (index of the number to be deleted), the program begins the deletion process by initiating a loop.<br><br>
+  
+2) This loop starts from the position of the element to be deleted and continues until the end of the array (one element before the end).<br><br>
+
+3) During each iteration of the loop:<br>
+  - The element at the current position (to be deleted) is overwritten with the value of the next element in the array.<br>
+  - This effectively shifts all elements after the deleted element one position to the left.<br><br>
+  
+4) By continuously overwriting each element with the value of the next element in the array, the program ensures that there are no gaps left in the array after the deletion.<br><br>
+
+5) After completing the shifting process, the size of the array is decremented by one to reflect the removal of the element.<br><br>
+
+6) Finally, the program prints the updated array, now containing one fewer element after the deletion.<br><br>
+            </p>
+            
+            <h2 class="section-title">Numerical Example:</h2>
+<div class="example">
+    <p><strong>Example:</strong> Let's delete an element at position 3 in an array of 10 elements:</p>
+    <ol>
+        <li>Array before deletion: [1, 2, <strong>3</strong>, 4, 5, 6, 7, 8, 9, 10]</li>
+        <li>After deleting the element at position 3 (1 based indexing):</li>
+        <ul><strong></strong>
+            <li>1st iteration:
+                <ul>
+                    <li>Array after 1st iteration: [1, 2, 4, <strong>4</strong>, 5, 6, 7, 8, 9, 10]</li>
+                </ul>
+            </li>
+            <li>2nd iteration:
+                <ul>
+                    <li>Array after 2nd iteration: [1, 2, 4, 5, <strong>5</strong>, 6, 7, 8, 9, 10]</li>
+                </ul>
+            </li>
+            <li>3rd iteration:
+                <ul>
+                    <li>Array after 3rd iteration: [1, 2, 4, 5, 6, <strong>6</strong>, 7, 8, 9, 10]</li>
+                </ul>
+            </li>
+            <li>4th iteration:
+                <ul>
+                    <li>Array after 4th iteration: [1, 2, 4, 5, 6, 7, <strong>7</strong>, 8, 9, 10]</li>
+                </ul>
+            </li>
+            <li>5th iteration:
+                <ul>
+                    <li>Array after 5th iteration: [1, 2, 4, 5, 6, 7, 8, <strong>8</strong>, 9, 10]</li>
+                </ul>
+            </li>
+            <li>6th iteration:
+                <ul>
+                    <li>Array after 6th iteration: [1, 2, 4, 5, 6, 7, 8, 9, <strong>9</strong>, 10]</li>
+                </ul>
+            </li>
+            <li>7th iteration:
+                <ul>
+                    <li>Array after 7th iteration: [1, 2, 4, 5, 6, 7, 8, 9, 10, <strong>10</strong>]</li>
+                </ul>
+            </li>
+        </ul>
+    </ol>
+    <p>Here we shifted all the numbers. now we can decrease the size of the array by 1. this ensures we only traverse the array
+        up to size-1 in future. the last two are duplicates. As this is a fixed size array(statically allocated), we cannot free the last 
+        element of the array. so let's decrease the size by 1.<br>
+        The Result is : [1, 2, 4, 5, 6, 7, 8, 9, 10]
+    </p>
+</div>
+            <h2 class="section-title">What about Python Solution??</h2>
+                <p>In Python, lists are dynamic arrays, and when an element is removed from a list using the `del` keyword or the `remove()` method, the remaining elements are automatically shifted to fill the gap created by the deletion. Therefore, there is no explicit need to perform shifting as in fixed-size arrays, as the Python list handles this internally.</p>
+
+            <h2 class="section-title">Time and Space Complexity:</h2>
+                <p><strong>Time Complexity:</strong>O(n), where n is the number of elements in the array. This is because in the worst-case scenario, all elements after the deleted element need to be shifted one position to the left, which requires iterating through n-position elements.</p>
+                <p><strong>Space Complexity:</strong>O(n), where n is the number of elements in the array. ofcourse we declared the maxsize as 100. so you may say the space complexity is O(1) but generally speaking, it's O(n)</p>
+
+            <h2 class="section-title">Challenge:</h2>
+            <p>Try adding a new element into the array at a particular position.</p>
+    </div>
+    <script src="prism.js"></script>
+</body>
+</html>

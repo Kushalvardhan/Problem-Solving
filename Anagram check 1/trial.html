@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anagram check-1</title>
+    <link rel="stylesheet" href="prism.css">
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1 class="section-title">Anagram check-1</h1>
+        
+        <h2 class="section-title">Problem Statement:</h2>
+        <p>Given two strings, determine if they are anagrams of each other.</p>
+        
+        <h2 class="section-title">Illustration:</h2>
+        <p>Consider the following examples:</p>
+        <div class="example">
+            <h3>Example 1:</h3>
+            <p>String 1: "listen"<br>String 2: "silent"</p>
+            <p>Explanation: Both strings contain the same characters with the same frequency, so they are anagrams.</p>
+        </div>
+        <div class="example">
+            <h3>Example 2:</h3>
+            <p>String 1: "hello"<br>String 2: "world"</p>
+            <p>Explanation: The characters and their frequencies in the two strings differ, so they are not anagrams.</p>
+        </div>
+        
+        <h2 class="section-title">Prerequisites:</h2>
+        <p>To understand and implement the solution, you should be familiar with the following concepts:</p>
+        <ul>
+            <li>Strings</li>
+            <li>Loops</li>
+            <li>Conditional statements</li>
+        </ul>
+        
+        <h2 class="section-title">Solution:</h2>
+        <div class="solution">
+            <h3>Classic C Program:</h3>
+            <div class="line-numbers">
+                <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+void anagram(char *str1, char *str2);
+
+int main()
+{
+    char str1[80], str2[80];
+    int i, j, len;
+
+    printf("Enter string 1 : ");
+    gets(str1);
+
+    printf("Enter string 2 : ");
+    gets(str2);
+
+    for(i=0; str1[i]!='\0'; ++i){}
+    for(j=0; str2[j]!='\0'; ++j){}
+
+    if(i==j)
+        anagram(str1, str2);
+    else
+        printf("\nLengths are not equal\n");
+
+    return 0;
+}
+
+void anagram(char *str1, char *str2)
+{
+    int i, j, check=1, find;
+
+    for(i=0; str1[i]!='\0'; ++i)
+    {
+        find = 0;
+        for(j=0; str2[j]!='\0'; ++j)
+        {
+            if(str1[i]==str2[j])
+            {
+                str2[j]='*';
+                find = 1;
+                break;
+            }
+        }
+        if(find==0)
+        {
+            printf("\nNot Anagrams!\n");
+            return;
+        }
+    }
+    printf("\nBoth are Anagrams!\n");
+    return;
+}
+                </code></pre>
+            </div>
+            <h3>Python Solution :</h3>
+            <div class="line-numbers">
+                <pre><code class="language-python">
+def anagram(str1, str2):
+    str2 = list(str2)
+    for i in range(len(str1)):
+        find = False
+        for j in range(len(str2)):
+            if str1[i] == str2[j]:
+                str2[j] = '*'
+                find = True
+                break
+        if not find:
+            print("\nNot Anagrams!\n")
+            return
+    print("\nBoth are Anagrams!\n")
+
+def main():
+    str1 = input("Enter string 1: ")
+    str2 = input("Enter string 2: ")
+
+    if len(str1) == len(str2):
+        anagram(str1, str2)
+    else:
+        print("\nLengths are not equal\n")
+
+if __name__ == "__main__":
+    main()
+                </code></pre>
+            </div>
+        </div>
+        
+        <h2 class="section-title">Explanation:</h2>
+        <p>
+            1. Take two strings as input from the user.<br>
+            2. Iterate through each character of the first string.<br>
+            3. For each character, search for a matching character in the second string.<br>
+            4. If a match is found, mark the character in the second string and continue.<br>
+            5. If all characters are matched, the strings are anagrams; otherwise, they are not.<br>
+            6. If a character in the first string is not found in the second string, they cannot be anagrams.<br>
+            7. Print the result based on the outcome of the search.<br>
+        </p>
+            
+        <h2 class="section-title">Time and Space Complexity:</h2>
+        <p>The time complexity of the solution is O(n^2), where n is the length of the strings. This is because of the nested loops used to compare each character of both strings.</p>
+        
+        <h2 class="section-title">Challenge:</h2>
+        <p>Can you further improve the performance of the algorithm? Any way better than O(n^2)?</p>
+        <p><strong>Hint:</strong>You can use track the frequencies of characters</p>
+    </div>
+
+    <script src="prism.js"></script>
+</body>
+</html>

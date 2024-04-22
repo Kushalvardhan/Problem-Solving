@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key in every segment</title>
+    <link rel="stylesheet" href="prism.css">
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1 class="section-title">Key in every segment</h1>
+        
+        <h2 class="section-title">Problem Statement:</h2>
+        <p>
+            You are given an array of integers, a key value, and a segment size. Your task is to determine if the key value exists in every non-overlapping segment of the specified size in the array.
+            <br>
+            Write a program that takes the following inputs:<br>
+            1. The size of the array.<br>
+            2. The elements of the array.<br>
+            3. The key value to search for.<br>
+            4. The segment size.<br>
+
+            The program should output "Yes" if the key value exists in every non-overlapping segment of size k in the array, otherwise "NO".<br>
+        </p>
+        
+    <h2 class="section-title">Illustration:</h2>
+    <div class="example">
+        <h3>Example:</h3>
+        <p><strong>Array:</strong> [4, 2, 1, 5, 3, 6, 8, 7]</p>
+        <p><strong>Key:</strong> 3</p>
+        <p><strong>Segment Size:</strong> 3</p>
+        <p><strong>Explanation:</strong> 
+            We divide the array into non-overlapping segments of size 3: [4, 2, 1], [5, 3, 6], [8, 7].<br>
+            - In the first segment [4, 2, 1], the key 3 is not present.<br>
+            - In the second segment [5, 3, 6], the key 3 is present.<br>
+            - In the third segment [8, 7], the key 3 is not present.<br>
+            Since the key is not present in every non-overlapping segment, the output is "NO".<br>
+        </p>
+    </div>
+
+        
+    <h2 class="section-title">Prerequisites:</h2>
+    <p>To understand and implement the solution, you should be familiar with the following concepts:</p>
+    <ul>
+        <li>Arithmetic Operations (%, +, *, /)</li>
+        <li>Looping Constructs (for loop, while loop)</li>
+        <li>Conditional Statements (if-else)</li>
+        <li>Memory Management (dynamic memory allocation) not really necessary though...</li>
+    </ul>
+
+        <h2 class="section-title">Solution:</h2>
+        <div class="solution">
+            <h3>Classic C Program:</h3>
+            <div class="line-numbers">
+                <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main() {
+    int i, j, n, k, x, count;
+    int *arr;
+
+    printf("Enter the size of array : ");
+    scanf("%d", &n);
+
+    arr = (int *)malloc(sizeof(int)*n);
+
+    printf("Enter array elements : ");
+
+    for(i=0; i&lt;n; ++i)
+        scanf("%d", &arr[i]);
+
+    printf("Enter key : ");
+    scanf("%d", &x);
+
+    printf("Enter segment size : ");
+    scanf("%d", &k);
+
+    for(i=0; i&lt;n; i+=k)
+    {
+        count = 0;
+        for(j=i; j&lt;min(i+k, n); ++j)
+        {
+            if(arr[j]==x)
+            {
+                count = 1;
+                break;
+            }
+        }
+
+        if(count == 0)
+        {
+            printf("NO");
+            break;
+        }
+    }
+
+    if(count == 1)
+        printf("Yes");
+
+    return 0;
+}
+
+            </code></pre>
+            </div>
+
+            <h3>Python Solution :</h3>
+            <div class="line-numbers">
+                <pre><code class="language-python">
+def main():
+    n = int(input("Enter the size of array : "))
+    arr = list(map(int, input("Enter array elements : ").split()))
+    x = int(input("Enter key : "))
+    k = int(input("Enter segment size : "))
+
+    for i in range(0, n, k):
+        count = 0
+        for j in range(i, min(i + k, n)):
+            if arr[j] == x:
+                count = 1
+                break
+
+        if count == 0:
+            print("NO")
+            break
+
+    if count == 1:
+        print("Yes")
+
+if __name__ == "__main__":
+    main()
+                </code></pre>
+            </div>
+        </div>
+        
+        <h2 class="section-title">Explanation:</h2>
+        <p>
+            1. The program starts by prompting the user to input the size of the array and the array elements.<br>
+            2. It then dynamically allocates memory to store the array elements based on the user-provided size.<br>
+            3. Next, the program asks the user to input the key value to search for and the segment size.<br>
+            4. Using nested loops, the program iterates through the array, dividing it into non-overlapping segments of the specified size.<br>
+            5. Within each segment, another loop iterates through the elements to search for the key value.<br>
+            6. If the key value is found in any segment, a flag is set to indicate its presence.<br>
+            7. After searching through all segments, the program checks the flag to determine if the key value was found in every segment.<br>
+            8. Depending on the flag status, the program prints "Yes" if the key value is found in every segment, otherwise it prints "NO".<br>
+            9. Finally, the program deallocates the memory allocated for the array and terminates.<br>
+        </p>
+            
+        <h2 class="section-title">Time and Space Complexity:</h2>
+        <p>The program iterates through each element of the array once to search for the key value within each segment.
+            Within each segment, it iterates through a subset of elements (of size k) to perform the search.
+            Since the nested loops are not nested to the full size of the array but instead to the size of the segments, the overall time complexity is still O(n), where n is the size of the array.
+            <br><br>
+            The program dynamically allocates memory for the array to store the elements entered by the user.
+            Therefore, the space complexity of the program is O(n), where n is the size of the array.
+        </p>
+        
+        <h2 class="section-title">Challenge:</h2>
+        <p>Implement the program using a different approach without using nested loops. Instead, try to devise a solution that iterates through the array only once while maintaining the segment-wise search logic.</p>
+        <p><strong>Hint:</strong>You may consider using a sliding window approach or a data structure like a deque to efficiently handle the segmentation and search.</p>
+    </div>
+
+    <script src="prism.js"></script>
+</body>
+</html>

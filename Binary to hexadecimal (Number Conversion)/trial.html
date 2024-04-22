@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary to Hexa</title>
+    <link rel="stylesheet" href="prism.css">
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1 class="section-title">Binary to Hexa decimal (Number Conversion)</h1>
+        
+        <h2 class="section-title">Problem Statement:</h2>
+        <p>Given a Binary number in interger format. Output the equivalent Hexa decimal number.</p>
+        
+    <h2 class="section-title">Illustration:</h2>
+    <div class="example">
+        <h3>Example:</h3>
+        <p><strong>Binary Number:</strong> 10101100</p>
+        <p><strong>Explanation:</strong> 
+            Starting from the rightmost side, we group the binary digits into sets of four: (1100)(1010).
+            Converting each group of four binary digits to its hexadecimal equivalent:<br>
+            - (1100) in binary is equivalent to (C) in hexadecimal.<br>
+            - (1010) in binary is equivalent to (A) in hexadecimal.<br>
+            Concatenating the hexadecimal representations: CA.<br>
+            Therefore, the hexadecimal equivalent of the binary number 10101100 is AC (on reversing).
+        </p>
+    </div>
+    <hr>
+    <table border="1" style="margin-top:20px;">
+        <h2 class="section-title">Binary to Hexadecimal Conversion Table</h2>
+        <tr>
+            <th>Binary</th>
+            <th>Hexadecimal</th>
+        </tr>
+        <tr>
+            <td>0000</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>0001</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>0010</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>0011</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>0100</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>0101</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>0110</td>
+            <td>6</td>
+        </tr>
+        <tr>
+            <td>0111</td>
+            <td>7</td>
+        </tr>
+        <tr>
+            <td>1000</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>1001</td>
+            <td>9</td>
+        </tr>
+        <tr>
+            <td>1010</td>
+            <td>A</td>
+        </tr>
+        <tr>
+            <td>1011</td>
+            <td>B</td>
+        </tr>
+        <tr>
+            <td>1100</td>
+            <td>C</td>
+        </tr>
+        <tr>
+            <td>1101</td>
+            <td>D</td>
+        </tr>
+        <tr>
+            <td>1110</td>
+            <td>E</td>
+        </tr>
+        <tr>
+            <td>1111</td>
+            <td>F</td>
+        </tr>
+    </table>
+    <hr>
+        <h2 class="section-title">Prerequisites:</h2>
+        <p>To understand and implement the solution, you should be familiar with the following concepts:</p>
+        <ul>
+            <li>Arithmetic Operations (%, +, -, /)</li>
+            <li>conversions</li>
+            <li>Looping Constructs</li>
+            <li>Conditional Statements (if-else)</li>
+        </ul>
+        
+        <h2 class="section-title">Solution:</h2>
+        <div class="solution">
+            <h3>Classic C Program:</h3>
+            <div class="line-numbers">
+                <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+int hexa(long long int bin)
+{
+    int n, index=0;
+    int hexconst[] = {0, 1, 10, 11, 100, 101, 110, 111, 1000, 1001, 1010, 1011, 1100, 1101, 1110, 1111};
+    char hex[20];
+
+    while (bin)
+    {
+        n = bin%10000;
+        for (int i=0; i<16; ++i)
+        {
+            if (hexconst[i]==n)
+            {
+                if (i<10)
+                {
+                    hex[index] = (char)(48+i);
+                }
+                else
+                {
+                    hex[index] = (char)(65 + (i-10));
+                }
+                break;
+            }
+        }
+        index++;
+        bin = bin/10000;
+    }
+    hex[index] = '\0';
+    strrev(hex);
+    printf("Hexadecimal equivalent is : %s", hex);
+
+    return 0;
+}
+
+int main()
+{
+    long long int bin;
+
+    printf("Enter your Binary Number : ");
+    scanf("%lld", &bin);
+
+    hexa(bin);
+
+    return 0;
+}
+                </code></pre>
+
+            </div>
+            <h3>Python Solution :</h3>
+            <div class="line-numbers">
+                <pre><code class="language-python">
+def hexa(bin):
+    hexconst = {0: '0', 1: '1', 10: '2', 11: '3', 100: '4', 101: '5', 110: '6', 111: '7', 1000: '8', 1001: '9', 1010: 'A', 1011: 'B', 1100: 'C', 1101: 'D', 1110: 'E', 1111: 'F'}
+    hex_str = ""
+
+    while bin:
+        n = bin % 10000
+        for key, value in hexconst.items():
+            if key == n:
+                hex_str += value
+                break
+        bin //= 10000
+
+    hex_str = hex_str[::-1]
+    print("Hexadecimal equivalent is :", hex_str)
+
+if __name__ == "__main__":
+    bin = int(input("Enter your Binary Number : "))
+    hexa(bin)
+                </code></pre>
+            </div>
+        </div>
+        
+        <h2 class="section-title">Explanation:</h2>
+        <p>
+1. The program prompts the user to input a binary number.<br>
+2. Inside the `hexa` function (or equivalent), it initializes a dictionary (C: array) containing the hexadecimal equivalents of all possible 4-bit binary patterns.<br>
+3. Using a while loop, the program iterates through the binary number, grouping the binary digits into sets of four from right to left.<br>
+4. Within the loop, it looks up each group of four binary digits in the dictionary (C: array) to find its corresponding hexadecimal value.<br>
+5. The hexadecimal digits are then concatenated (C: stored in a character array) to form the final hexadecimal equivalent.<br>
+6. After processing all groups of four binary digits, the resulting hexadecimal string is reversed to obtain the correct order.<br>
+7. Finally, the program prints the hexadecimal equivalent of the input binary number.<br>
+        </p>
+            
+        <h2 class="section-title">Time and Space Complexity:</h2>
+        <p>The time complexity of the given logic is O(log₂(bin)), where bin is the input binary number. 
+            This is because the number of iterations in the while loop is determined by the number of digits in the binary number, 
+            which is logarithmic with respect to the value of the number.
+            <br><br>
+            The space complexity of the given logic is O(log₂(bin)), as the space required to store the hexadecimal equivalent of 
+            the binary number is proportional to the number of digits in the binary number. 
+            This is because the length of the hexadecimal string (or array) grows linearly with the number of digits in the binary number.
+        </p>
+        
+        <h2 class="section-title">Challenge:</h2>
+        <p>Try reverse. Take Hexa decimal number as input and convert it into its binary representation.</p>
+        <p><strong>Hint:</strong>convert hexa to decimal then decimal to binary... (one possible way)</p>
+    </div>
+
+    <script src="prism.js"></script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Armstong Number</title>
+    <link rel="stylesheet" href="prism.css">
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1 class="section-title">Armstong Number</h1>
+        
+        <h2 class="section-title">Problem Statement:</h2>
+        <p>Write a program to determine whether a given integer is an Armstrong number.  An Armstrong number (also known as a narcissistic number or plenary number) is a number that is equal to the sum of its own digits raised to the power of the number of digits.</p>
+        
+        <h2 class="section-title">Illustration:</h2>
+        <p>Consider the following examples:</p>
+        <div class="example">
+            <h3>Example 1:</h3>
+            <p>Number: 153</p>
+            <p>Explanation: The number 153 has 3 digits. Each digit raised to the power of 3 and then summed gives: 1^3 + 5^3 + 3^3 = 1 + 125 + 27 = 153. Since the sum equals the original number, 153 is an Armstrong number.</p>
+        </div>
+        <div class="example">
+            <h3>Example 2:</h3>
+            <p>Number: 123</p>
+            <p>Explanation: The number 123 has 3 digits. Each digit raised to the power of 3 and then summed gives: 1^3 + 2^3 + 3^3 = 1 + 8 + 27 = 36. Since the sum does not equal the original number (123), 123 is not an Armstrong number.</p>
+        </div>
+
+        <h2 class="section-title">Prerequisites:</h2>
+        <p>To understand and implement the solution, you should be familiar with the following concepts:</p>
+        <ul>
+            <li>Simple Arithmeteic Operations(%, /, +)</li>
+            <li>Mathematical funtions (pow(), log10())</li>
+            <li>loops</li>
+            <li>Conditional statements</li>
+        </ul>
+        
+        <h2 class="section-title">Solution:</h2>
+        <div class="solution">
+            <h3>Classic C Program:</h3>
+            <div class="line-numbers">
+                <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;math.h&gt;
+
+int main()
+{
+    int num, dnum, digits, rem, sum;
+    sum = 0;
+
+    printf("Enter a number to check : ");
+    scanf("%d", &num);
+    dnum = num;
+
+    digits = (int)(log10(num)+1);
+
+    while (num)
+    {
+        rem = num%10;
+        sum = sum + pow(rem, digits);
+        num = num/10;
+    }
+
+    if (dnum == sum)
+    {
+        printf("Armstrong number\n");
+    }
+    else
+    {
+        printf("Not Armstrong number\n");
+    }
+
+    return 0;
+}
+            </code></pre>
+            </div>
+            <h3>Python Solution :</h3>
+            <div class="line-numbers">
+                <pre><code class="language-python">
+def is_armstrong(num):
+    dnum = num
+    digits = len(str(num))
+    sum = 0
+
+    while num > 0:
+        rem = num % 10
+        sum += rem ** digits
+        num //= 10
+
+    if dnum == sum:
+        print("Armstrong number")
+    else:
+        print("Not Armstrong number")
+
+if __name__ == "__main__":
+    num = int(input("Enter a number to check: "))
+    is_armstrong(num)
+                </code></pre>
+            </div>
+        </div>
+        
+        <h2 class="section-title">Explanation:</h2>
+        <p>
+            1. The program prompts the user to input a number to check.<br>
+            2. It calculates the number of digits in the input number using the logarithm function and adds 1 to account for the first digit.<br>
+            3. It initializes variables to store the sum of powered digits and a copy of the original number.<br>
+            4. Using a while loop, the program iterates through each digit of the number.<br>
+            5. Inside the loop, it calculates the remainder when dividing the number by 10 to extract the last digit.<br>
+            6. It raises this digit to the power of the total number of digits and adds the result to the sum.<br>
+            7. After processing all digits, it compares the sum with the original number.<br>
+            8. If they are equal, it concludes that the number is an Armstrong number and prints a corresponding message. Otherwise, it prints that the number is not an Armstrong number.<br>
+        </p>
+            
+        <h2 class="section-title">Time and Space Complexity:</h2>
+        <p>The time complexity of the given logic is O(log10(n)), where n is the input number. 
+            This is because the number of iterations in the while loop is determined by the number of digits in the 
+            input number, which is logarithmic with respect to the value of the number.
+            <br><br>
+            The space complexity of the logic is O(1), as the space required remains constant regardless of the input size. 
+            The space complexity is constant because the program uses a fixed number of variables and does not allocate any 
+            additional memory based on the input size.
+        </p>
+        
+        <h2 class="section-title">Challenge:</h2>
+        <p>Modify the program to check if a range of numbers contains any Armstrong numbers. Prompt the user to input a range (start and end) and then print all Armstrong numbers within that range.</p>
+        <p><strong>Hint:</strong>You can create a function to check if a number is an Armstrong number and then iterate through the range of numbers specified by the user. Within the loop, call the function for each number and print the number if it's an Armstrong number.</p>
+    </div>
+    <br>
+    <div class="container">
+        <h1 class="section-title">Eating is not just about what's on your plate, but what's in your heart.</h1>
+        <p>"Every time we sit down to eat, we have the opportunity to choose compassion over cruelty, kindness over violence, and love over indifference. By embracing vegetarianism, we not only nourish our bodies but also our souls, and in doing so, we sow the seeds of a more peaceful and compassionate world for all beings."</p>
+        <center><h2 class="section-title">Be A Vegetarian</h2></center>
+    </div>
+
+    <script src="prism.js"></script>
+</body>
+</html>

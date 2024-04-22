@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upper Triangular Check</title>
+    <link rel="stylesheet" href="prism.css">
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1 class="section-title">Upper Triangular Check</h1>
+        
+        <h2 class="section-title">Problem Statement:</h2>
+        <p>Write a program to determine whether a given matrix is an upper triangular matrix.</p>
+        <p>An upper triangular matrix is a square matrix in which all elements below the main diagonal are zero.</p>
+        
+<h2 class="section-title">Illustration:</h2>
+<div class="example">
+    <div class="matrix">
+        <table>
+            <tr>
+                <td class="diag">1</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td class="lt">0</td>
+                <td class="diag">4</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td class="lt">0</td>
+                <td class="lt">0</td>
+                <td class="diag">6</td>
+            </tr>
+        </table>
+    </div>
+    <p><strong>The matrix is an upper triangular matrix.</strong></p>
+
+    <div class="matrix">
+        <table>
+            <tr>
+                <td class="diag">1</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td class="lt">4</td>
+                <td class="diag">5</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td class="lt">0</td>
+                <td class="lt">6</td>
+                <td class="diag">7</td>
+            </tr>
+        </table>
+    </div>
+    <p><strong>The matrix is not an upper triangular matrix.</strong></p>
+</div>
+  
+    <h2 class="section-title">Prerequisites:</h2>
+    <p>To understand and implement the solution, you should be familiar with the following concepts:</p>
+    <ul>
+        <li>Basic matrix manipulation</li>
+        <li>Nested loops</li>
+        <li>Conditional statements</li>
+    </ul>
+
+        <h2 class="section-title">Solution:</h2>
+        <div class="solution">
+            <h3>Classic C Program:</h3>
+            <div class="line-numbers">
+                <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#define MAXROW 10
+#define MAXCOL 10
+
+void input_arr(int arr[][MAXCOL], int m, int n);
+
+int main()
+{
+    int arr[MAXROW][MAXCOL];
+    int nrow, ncol;
+    int i, j;
+    int upper = 1;
+
+    printf("Enter number of Rows : ");
+    scanf("%d", &nrow);
+    printf("Enter number of Colums : ");
+    scanf("%d", &ncol);
+
+    printf("Enter array elements :\n");
+    input_arr(arr, nrow, ncol);
+
+    for (i=0; i&lt;nrow; ++i)
+    {
+        for (j=0; j&lt;ncol; ++j)
+        {
+            if (i&gt;j)
+            {
+                if (arr[i][j] != 0)
+                {
+                    upper = 0;
+                    break;
+                }
+            }
+        }
+        if (upper == 0)
+            break;
+    }
+
+    if (upper == 1)
+        printf("\nThis is a Upper Triangular Matrix\n");
+    else
+        printf("\nThis is not an Upper Triangular Matrix\n");
+
+    return 0;
+}
+
+void input_arr(int arr[][MAXCOL], int m, int n)
+{
+    int i, j;
+
+    for (i=0; i&lt;m; ++i)
+    {
+        for (j=0; j&lt;n; ++j)
+        {
+            scanf("%d", &arr[i][j]);
+        }
+    }
+    return;
+}
+            </code></pre>
+            </div>
+
+            <h3>Python Solution :</h3>
+            <div class="line-numbers">
+                <pre><code class="language-python">
+def input_arr(arr, m, n):
+    for i in range(m):
+        for j in range(n):
+            arr[i][j] = int(input())
+
+def is_upper_triangular(arr, m, n):
+    for i in range(m):
+        for j in range(n):
+            if i > j and arr[i][j] != 0:
+                return False
+    return True
+
+def main():
+    MAXROW = 10
+    MAXCOL = 10
+
+    arr = [[0] * MAXCOL for _ in range(MAXROW)]
+
+    nrow = int(input("Enter number of Rows: "))
+    ncol = int(input("Enter number of Columns: "))
+
+    print("Enter array elements:")
+    input_arr(arr, nrow, ncol)
+
+    if is_upper_triangular(arr, nrow, ncol):
+        print("\nThis is an Upper Triangular Matrix")
+    else:
+        print("\nThis is not an Upper Triangular Matrix")
+
+if __name__ == "__main__":
+    main()
+                </code></pre>
+            </div>
+        </div>
+        
+        <h2 class="section-title">Explanation:</h2>
+        <p>
+            1. The program starts by prompting the user to input the number of rows and columns for the matrix.<br>
+2. It then prompts the user to input the elements of the matrix.<br>
+3. The input_arr function is responsible for accepting the matrix elements and storing them in a 2D array.<br>
+4. The main function iterates over each element of the matrix and checks if it lies below the main diagonal (i > j) and is not equal to zero.<br>
+5. If any such element is found, the matrix is not an upper triangular matrix, and the program breaks out of the loop.<br>
+6. If no such element is found, the matrix is considered an upper triangular matrix.<br>
+7. Finally, the program prints the appropriate message based on whether the matrix is upper triangular or not.<br>
+        </p>
+            
+        <h2 class="section-title">Time and Space Complexity:</h2>
+        <p> The time complexity of the input_arr function is O(m * n), where m is the number of rows and n is the number of columns.<br> This is because the function iterates over each element of the matrix once.
+            <br>The time complexity of the is_upper_triangular function is also O(m * n), as it iterates over each element of the matrix once to check if it lies below the main diagonal.<br>
+            Overall, the time complexity of the program is O(m * n), where m is the number of rows and n is the number of columns.
+            <br><br>
+            The space complexity of the program is O(m * n) as well. This is because the program uses a 2D array of size m * n to store the matrix elements.<br>
+            Additionally, the program uses a few constant extra variables and functions, so they do not significantly contribute to the overall space complexity.<br>
+            Therefore, the dominant factor in the space complexity is the size of the matrix itself. 
+        </p>
+        
+        <h2 class="section-title">Challenge:</h2>
+        <p>Modify the program to check if the matrix is a lower triangular matrix instead of an upper triangular matrix. A lower triangular matrix is a square matrix in which all elements above the main diagonal are zero.</p>
+        <p><strong>Hint:</strong>Modify the condition inside the is_upper_triangular function to check if elements lie above the main diagonal instead of below it.</p>
+    </div>
+
+    <script src="prism.js"></script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upper Triangular Check</title>
+    <link rel="stylesheet" href="prism.css">
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1 class="section-title">nCr Using Pascal's triangle</h1>
+        
+        <h2 class="section-title">Problem Statement:</h2>
+        <p>Implement a Recursive program to calculate the combination nCr using Pascal's triangle.</p>
+        
+        <h2 class="section-title">Illustration:</h2>
+        <div class="example">
+            <p><strong>Input:</strong></p>
+            <p>Enter n and r to find nCr : 5 2</p>
+            <p><strong>Explanation:</strong> 
+                We want to find 5 choose 2 (5C2) using Pascal's triangle.
+                Pascal's triangle:
+                <pre>
+                          1
+                        1   1
+                      1   2   1
+                    1   3   3   1
+                  1   4   6   4   1
+                1   5  <strong>10</strong>  10   5   1
+                </pre>
+
+                Here's how we use Pascal's triangle to calculate nCr:<br><br>
+
+                1) Each row in Pascal's triangle corresponds to a value of n.<br>
+                2) Each element in a row corresponds to a value of r.<br>
+                3) The value at row n and position r (0-indexed) represents the value of nCr. <br>
+                4) To find the value of nCr, we start at the top of the triangle and count down n rows and over r positions.<br>
+                5) The number at that position is the value of nCr.<br><br>
+                For example, to find 5C2:<br>
+                we start from row 5 and count down 2 positions. (0-indexed)<br>
+                The value at row 5, position 2 is 10, which is the result.<br>
+            </p>
+            <p><strong>Output:</strong> 5C2 is : 10</p>
+        </div>
+          
+    <h2 class="section-title">Prerequisites:</h2>
+    <p>To understand and implement the solution, you should be familiar with the following concepts:</p>
+    <ul>
+        <li>Familiarity with recursion and recursive functions.</li>
+        <li>Knowledge of how Pascal's triangle is constructed and its properties.</li>
+        <li>loops and conditional statements.</li>
+    </ul>
+
+        <h2 class="section-title">Solution:</h2>
+        <div class="solution">
+            <h3>Classic C Program:</h3>
+            <div class="line-numbers">
+                <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int ncr(int n, int r);
+
+int main()
+{
+    int n, r;
+
+    printf("Enter n and c to find nCr : ");
+    scanf("%d %d", &n, &r); //r must be less than or equal to n
+
+    printf("\n %dC%d is : %d\n", n, r, ncr(n, r));
+
+    return 0;
+}
+
+int ncr(int n, int r)
+{
+    if(r==0 || n==r)
+        return 1;
+    else
+        return ncr(n-1, r-1) + ncr(n-1, r);
+}
+            </code></pre>
+            </div>
+
+            <h3>Python Solution :</h3>
+            <div class="line-numbers">
+                <pre><code class="language-python">
+def ncr(n, r):
+    if r == 0 or n == r:
+        return 1
+    else:
+        return ncr(n - 1, r - 1) + ncr(n - 1, r)
+
+def main():
+    n = int(input("Enter n: "))
+    r = int(input("Enter r: "))
+
+    print(f"{n}C{r} is: {ncr(n, r)}")
+
+if __name__ == "__main__":
+    main()
+                </code></pre>
+            </div>
+        </div>
+        
+        <h2 class="section-title">Explanation:</h2>
+        <p>
+            1. The program prompts the user to input two integers, n and r, representing the values for calculating nCr.<br>
+2. It then calls the ncr function with these inputs.<br>
+3. The ncr function recursively calculates the binomial coefficient using the formula nCr = (n-1)C(r-1) + (n-1)Cr.<br>
+4. Base cases are checked: if r is 0 or n is equal to r, then nCr is 1.<br>
+5. Otherwise, the function recursively calculates nCr by summing the results of (n-1)C(r-1) and (n-1)Cr.<br>
+6. Finally, the result is returned and printed in the main function.<br>
+7. The result represents the number of combinations of choosing r elements from a set of n elements.<br>
+        </p>
+        
+        <h2 class="section-title">How Recursive calls happening here....</h2>
+            <div class="example">
+            <p><strong>Recursion Illustration:</strong></p>
+            <p>Recursion is a process in which a function calls itself as a subroutine.</p>
+            <p>In the context of calculating nCr recursively:</p>
+            <ul>
+                <li>Each recursive call breaks down the problem into smaller subproblems.</li>
+                <li>These subproblems are solved by calling the same function with modified parameters.</li>
+                <li>The base case, where the recursion stops, is when r equals 0 or n equals r.</li>
+                <li>At this point, the function returns 1, indicating the end of the recursive calls.</li>
+                <li>By solving smaller instances of the problem, the function eventually reaches the base case and computes the final result.</li>
+            </ul>
+    <p>Here's a visualization of the recursive calls for n=5 and r=2:</p>
+    <pre>
+                     nCr(5,2)
+                   /          \
+           nCr(4,1)           nCr(4,2)
+          /       \           /        \
+     nCr(3,0)  nCr(3,1)   nCr(3,1)   nCr(3,2)
+     /   \      /     \   /     \      /     \
+   ...   ...  ...    ... ...   ...    ...   ...
+    </pre>
+    <p>The function branches out into multiple recursive calls until it reaches the base case.</p>
+</div>
+
+        <h2 class="section-title">Time and Space Complexity:</h2>
+        <p> Each recursive call in the nCr function generates two more recursive calls, except for the base cases.<br>
+            This results in a binary tree-like recursive call structure, with a depth of n.<br>
+            At each level of recursion, there are two branches (corresponding to the two recursive calls).<br>
+            Therefore, the total number of recursive function calls is proportional to 2^n.
+            Hence, the time complexity of the nCr function is O(2^n).
+            <br><br>
+            As for space complexity, it also depends on the depth of the recursion. O(n) <br> since there are no additional data structures or arrays being created in each function call, 
+            the only additional space used is for maintaining the function call stack.<br>
+        </p>
+        
+        <h2 class="section-title">Challenge:</h2>
+        <p>Implement an iterative version of the nCr function without using recursion. Try to optimize it for both time and space complexity. You can use dynamic programming or combinatorial formulas to achieve this.</p>
+    </div>
+
+    <script src="prism.js"></script>
+</body>
+</html>

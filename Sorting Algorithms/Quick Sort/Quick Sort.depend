@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1636006678 source:e:\shatterdome\sorting algorithms\quick sort\main.c
+	<stdio.h>
+	<stdlib.h>
+

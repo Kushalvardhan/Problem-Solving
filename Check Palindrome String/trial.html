@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Check</title>
+    <link rel="stylesheet" href="prism.css">
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1 class="section-title">Palindrome Check</h1>
+        
+        <h2 class="section-title">Problem Statement:</h2>
+        <p>Write a program to determine whether a given string is a palindrome.</p>
+        <p>A palindrome is a word, phrase, number, or other sequence of characters that reads the same forwards and backwards, 
+                ignoring spaces, punctuation, and capitalization.</p>
+        
+        <h2 class="section-title">Illustration:</h2>
+        <div class="example">
+            <p><strong>Input:</strong> "radar"</p>
+            <p><strong>Explanation:</strong> 
+                The given string "radar" is a palindrome because it reads the same forwards and backwards.
+            </p>   
+            <p><strong>Output:</strong>- The string is a palindrome.</p>
+        </div>
+        <div class="example">
+            <p><strong>Input:</strong> "hello"</p>
+            <p><strong>Explanation:</strong> 
+                The given string "hello" is not a palindrome because it does not read the same forwards and backwards.<br>
+                - Characters at start and end indices are not equal ('h' != 'o')<br>
+            </p>
+            <p><strong>Output:</strong>- The string is not a palindrome.</p>
+        </div>
+        
+    <h2 class="section-title">Prerequisites:</h2>
+    <p>To understand and implement the solution, you should be familiar with the following concepts:</p>
+    <ul>
+        <li>Basic string manipulation</li>
+        <li>Looping constructs</li>
+        <li>Conditional statements</li>
+    </ul>
+
+        <h2 class="section-title">Solution:</h2>
+        <div class="solution">
+            <h3>Classic C Program:</h3>
+            <div class="line-numbers">
+                <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main()
+{
+    char str[100];
+    int len, startindex, endindex;
+
+    printf("Enter your string : ");
+    gets(str);
+
+    len = 0;
+    while(str[len] != '\0') len++;
+
+    startindex = 0;
+    endindex = (len-1);
+
+    while (startindex <= endindex)
+    {
+        if (str[startindex] != str[endindex])
+            break;
+
+        startindex++;
+        endindex--;
+    }
+
+    if (startindex >= endindex)
+        printf("The string is Palindrome!\n");
+    else
+        printf("The string is not Palindrome!\n");
+
+
+    return 0;
+}
+            </code></pre>
+            </div>
+
+            <h3>Python Solution :</h3>
+            <div class="line-numbers">
+                <pre><code class="language-python">
+def check_palindrome(s):
+    start_index = 0
+    end_index = len(s) - 1
+
+    while start_index <= end_index:
+        if s[start_index] != s[end_index]:
+            return False
+        start_index += 1
+        end_index -= 1
+
+    return True
+
+def main():
+    s = input("Enter your string: ")
+
+    if check_palindrome(s):
+        print("The string is Palindrome!")
+    else:
+        print("The string is not Palindrome!")
+
+if __name__ == "__main__":
+    main()
+                </code></pre>
+            </div>
+        </div>
+        
+        <h2 class="section-title">Explanation:</h2>
+        <p>
+            1. The program starts by prompting the user to input a string. <br>
+            2. It calculates the length of the input string by iterating through it until it encounters the null terminator ('\0').<br>
+            3. Two index variables, `startindex` and `endindex`, are initialized to the beginning and end of the string, respectively.<br>
+            4. Using a while loop, the program checks if the characters at `startindex` and `endindex` are equal.<br>
+            5. If the characters are not equal, the loop breaks, indicating that the string is not a palindrome.<br>
+            6. If the loop completes without breaking, it means that all characters were compared successfully, confirming that the string is a palindrome.<br>
+            7. The program then prints "The string is Palindrome!" if the condition `startindex >= endindex` is true, indicating that the string is indeed a palindrome.<br>
+            8. Otherwise, it prints "The string is not Palindrome!".<br>
+            9. Finally, the program terminates.<br>
+        </p>
+            
+        <h2 class="section-title">Time and Space Complexity:</h2>
+        <p> The time complexity of this program is O(n), where n is the length of the input string.
+            This is because the program iterates through half of the string in the worst case, comparing characters from both ends.
+            <br><br>
+            The space complexity is O(1) or constant.
+            The program uses a fixed amount of memory for variables 
+        </p>
+        
+        <h2 class="section-title">Challenge:</h2>
+        <p>Modify the program to ignore spaces and punctuation marks while checking for palindromes. For example, "A man, a plan, a canal: Panama" should be considered a palindrome.</p>
+        <p><strong>Hint:</strong>You may need to preprocess the input string to remove spaces and punctuation marks before performing the palindrome check.</p>
+    </div>
+
+    <script src="prism.js"></script>
+</body>
+</html>

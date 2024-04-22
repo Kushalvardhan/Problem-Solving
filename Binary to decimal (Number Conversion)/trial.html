@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary to Decimal</title>
+    <link rel="stylesheet" href="prism.css">
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1 class="section-title">Binary to Decimal (Number Conversion)</h1>
+        
+        <h2 class="section-title">Problem Statement:</h2>
+        <p>Given a Binary number in interger format. Output the equivalent Decimal number.</p>
+        
+        <h2 class="section-title">Illustration:</h2>
+        <div class="example">
+            <h3>Example 1:</h3>
+            <p><strong>Binary Number:</strong> 1010</p>
+            <p><strong>Explanation:</strong> The binary number 1010 has 4 digits. Each digit is multiplied by the corresponding power of 2 and summed:<br> 1x(2^3) + 0x(2^2) + 1x(2^1) + 0x(2^0) = 8 + 0 + 2 + 0 = 10. Therefore, the decimal equivalent of 1010 is 10.</p>
+        </div>
+        <div class="example">
+            <h3>Example 2:</h3>
+            <p><strong>Binary Number:</strong> 11011</p>
+            <p><strong>Explanation:</strong> The binary number 11011 has 5 digits. Each digit is multiplied by the corresponding power of 2 and summed:<br> 1x(2^4) + 1x(2^3) + 0x(2^2) + 1x(2^1) + 1x(2^0) = 16 + 8 + 0 + 2 + 1 = 27. Therefore, the decimal equivalent of 11011 is 27.</p>
+        </div>
+
+        <h2 class="section-title">Prerequisites:</h2>
+        <p>To understand and implement the solution, you should be familiar with the following concepts:</p>
+        <ul>
+            <li>Arithmetic Operations (%, *, +, /)</li>
+            <li>Looping Constructs (while loop)</li>
+            <li>Conditional Statements (if-else)</li>
+        </ul>
+        
+        <h2 class="section-title">Solution:</h2>
+        <div class="solution">
+            <h3>Classic C Program:</h3>
+            <div class="line-numbers">
+                <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int convert(long long int bin)
+{
+    int sum = 0, p = 1;
+    int n;
+
+    while (bin)
+    {
+        n = bin%10;
+
+        if (n<=1)
+        {
+            sum = sum + (n*p);
+            p = p*2;
+            bin = bin/10;
+        }
+        else
+        {
+            printf("The number is not in binary Format!!!");
+            return -1;
+        }
+
+    }
+    return sum;
+}
+
+int main()
+{
+    long long int bin;
+
+    printf("Enter Number in Binary : ");
+    scanf("%lld", &bin);
+
+    if (convert(bin)!= -1)
+    {
+        printf("\nThe decimal equivalent of %lld is : %d\n", bin, convert(bin));
+    }
+    else
+    {
+        printf("\nNumbers other than 0 and 1 are present\n");
+    }
+    return 0;
+}
+            </code></pre>
+
+            </div>
+            <h3>Python Solution :</h3>
+            <div class="line-numbers">
+                <pre><code class="language-python">
+def convert(bin):
+    sum = 0
+    p = 1
+
+    while bin:
+        n = bin % 10
+
+        if n <= 1:
+            sum += n * p
+            p *= 2
+            bin //= 10
+        else:
+            print("The number is not in binary Format!!!")
+            return -1
+
+    return sum
+
+if __name__ == "__main__":
+    bin = int(input("Enter Number in Binary : "))
+
+    result = convert(bin)
+
+    if result != -1:
+        print("\nThe decimal equivalent of", bin, "is :", result)
+    else:
+        print("\nNumbers other than 0 and 1 are present")
+                </code></pre>
+            </div>
+        </div>
+        
+        <h2 class="section-title">Explanation:</h2>
+        <p>
+            1. The program prompts the user to input a binary number.<br>
+2. Inside the `convert` function, it initializes variables `sum` and `p` to store the decimal equivalent and the power of 2 respectively.<br>
+3. Using a while loop, the program iterates through each digit of the binary number.<br>
+4. Within the loop, it extracts the last digit of the binary number using modulo operation.<br>
+5. If the extracted digit is less than or equal to 1, it multiplies the digit by the appropriate power of 2 and adds the result to the sum.<br>
+6. The power of 2 (`p`) is updated for the next iteration.<br>
+7. After processing all digits, it returns the decimal equivalent if the binary number contains only 0s and 1s.<br>
+8. If any digit other than 0 or 1 is encountered, the program prints a message indicating that the number is not in binary format.<br>
+        </p>
+            
+        <h2 class="section-title">Time and Space Complexity:</h2>
+        <p>The time complexity of the given logic is O(log₂(bin)), where bin is the input binary number. 
+            This is because the number of iterations in the while loop is determined by the number of digits 
+            in the binary number, which is logarithmic with respect to the value of the number.
+            <br><br>
+            The space complexity of the logic is O(1), as the space required remains constant regardless of the input size. 
+            The space complexity is constant because the program uses a fixed number of variables and does not allocate any additional 
+            memory based on the input size.
+        </p>
+        
+        <h2 class="section-title">Challenge:</h2>
+        <p>Try reverse. Take decimal number as input and convert it into binary number.</p>
+        <p><strong>Hint:</strong>Any thing to do with division by 2?? Think about the traditonal way of converting decimal to binary.</p>
+    </div>
+
+    <script src="prism.js"></script>
+</body>
+</html>

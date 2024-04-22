@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Days to Years, Months, Weeks and days</title>
+    <link rel="stylesheet" href="prism.css">
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1 class="section-title">Days to Years, Months, Weeks and days</h1>
+        
+        <h2 class="section-title">Problem Statement:</h2>
+        <p>Given a number of days, convert it into years, months, weeks, and days.</p>
+        
+        <h2 class="section-title">What to do??</h2>
+            <div class="example">
+                <p>
+                <Strong>Input:</Strong><br>
+                Enter no of days : 1000<br>
+                <br>
+                <Strong>Output:</Strong> <br> 
+                YEARS : 2  <br>
+                MONTHS : 8  <br>
+                WEEKS : 4  <br>
+                DAYS : 2  <br>
+                <br>
+                <Strong>1000 days can be divided into 2 years, 8 months, 4 weeks, and 2 days.</Strong><br>
+                </p>
+            </div>
+
+        <h2 class="section-title">Prerequisites:</h2>
+        <p>To understand and implement the solution, you should be familiar with the following concepts:</p>
+        <ul>
+            <li>Basic arithmetic operations.</li>
+        </ul>
+
+        <h2 class="section-title">Solution:</h2>
+        <div class="solution">
+            <h3>Classic C Program:</h3>
+            <div class="line-numbers">
+                <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main()
+{
+    int days, years, months, weeks;
+
+    printf("Enter no of days : ");
+    scanf("%d", &days);
+
+    years = (days/365);
+    months = (days - (years * 365))/30;
+    weeks = (days - ((years * 365)+(months * 30)))/7;
+    days = (days - ((years*365)+(months * 30)+(weeks*7)));
+
+    printf("YEARS : %d\n", years);
+    printf("MONTHS : %d\n", months);
+    printf("WEEKS : %d\n", weeks);
+    printf("DAYS : %d\n", days);
+
+    return 0;
+}
+            </code></pre>
+            </div>
+
+            <h3>Python Solution :</h3>
+            <div class="line-numbers">
+                <pre><code class="language-python">
+def main():
+    days = int(input("Enter no of days : "))
+
+    years = days // 365
+    months = (days - (years * 365)) // 30
+    weeks = (days - ((years * 365) + (months * 30))) // 7
+    days = days - ((years * 365) + (months * 30) + (weeks * 7))
+
+    print("YEARS :", years)
+    print("MONTHS :", months)
+    print("WEEKS :", weeks)
+    print("DAYS :", days)
+
+if __name__ == "__main__":
+    main()
+                </code></pre>
+            </div>
+        </div>
+        <h2 class="section-title">Explanation:</h2>
+            <p>
+                1 Prompt the user to input the number of days.<br><br>
+                2 Calculate the number of years by dividing the total number of days by 365.<br><br>
+                3 Calculate the number of months by subtracting the days equivalent to the number of years and then dividing the remaining days by 30.<br><br>
+                4 Calculate the number of weeks by subtracting the days equivalent to the number of years and months, and then dividing the remaining days by 7.<br><br>
+                5 Calculate the remaining days by subtracting the days equivalent to the number of years, months, and weeks.<br><br>
+                6 Output the calculated years, months, weeks, and days.<br><br>
+
+                for no of days = 1000, they days can be divided into 2 years, 8 months, 4 weeks, and 2 days.<br>
+
+                - Each year contains 365 days, so 1000 days correspond to <strong>2</strong> years. <br>
+                - After subtracting 2 years (730 days), the remaining days are 270.<br>
+                - Each month contains approximately 30 days, so 270 days correspond to <strong>8</strong> months.<br>
+                - After subtracting 8 months (240 days), the remaining days are 30.<br>
+                - Each week contains 7 days, so 30 days correspond to <strong>4</strong> weeks.<br>
+                - After subtracting 4 weeks (28 days), the remaining days are <strong>2</strong>, which represents the final days.<br>
+            </p>
+        
+            <h2 class="section-title">Time and Space Complexity:</h2>
+            <p><strong>Time Complexity:</strong>O(1) because the number of calculations remains constant regardless of the input size.</p>
+            <p><strong>Space Complexity:</strong>O(1) because they only use a constant amount of extra space to store variables.</p>
+
+            <h2 class="section-title">Challenge:</h2>
+            <p>Take seconds as input. convert seconds to hours, minutes and seconds</p>
+    </div>
+    <script src="prism.js"></script>
+</body>
+</html>

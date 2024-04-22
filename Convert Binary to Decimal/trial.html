@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upper Triangular Check</title>
+    <link rel="stylesheet" href="prism.css">
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1 class="section-title">nCr Using Pascal's triangle</h1>
+        
+        <h2 class="section-title">Problem Statement:</h2>
+        <p>Implement a Recursive program to calculate the combination nCr using Pascal's triangle.</p>
+        
+<h2 class="section-title">Illustration:</h2>
+<div class="example">
+    <p><strong>Input:</strong> User enters a binary number, for example, "1010".</p>
+    <p><strong>Explanation:</strong> 
+        To convert binary to decimal:
+        <ul>
+            <li>Start from the rightmost digit (LSB).</li>
+            <li>Each digit is multiplied by 2 raised to the power of its position (0-based index).</li>
+            <li>Add all these results to get the decimal equivalent.</li>
+        </ul>
+        For "1010":
+        <ul>
+            <li>0 * 2^0 = 0</li>
+            <li>1 * 2^1 = 2</li>
+            <li>0 * 2^2 = 0</li>
+            <li>1 * 2^3 = 8</li>
+        </ul>
+        Sum = 0 + 2 + 0 + 8 = 10
+    </p>
+    <p><strong>Output:</strong> The decimal equivalent is 10.</p>
+</div>
+
+    <h2 class="section-title">Prerequisites:</h2>
+    <p>To understand and implement the solution, you should be familiar with the following concepts:</p>
+    <ul>
+        <li>Basic arithmetic operations.</li>
+        <li>Concept of binary numbers.</li>
+        <li>loops and conditional statements.</li>
+    </ul>
+
+        <h2 class="section-title">Solution:</h2>
+        <div class="solution">
+            <h3>Classic C Program:</h3>
+            <div class="line-numbers">
+                <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;math.h&gt;
+
+int main()
+{
+    long long bin;
+    int isbin, n, sum, rem;
+    
+    printf("Enter a number in binary format : ");
+    scanf("%lld", &bin);
+    sum = 0;
+    n = 0;
+    isbin = 1;
+    while (bin)
+    {
+        rem = bin % 10;
+    
+        if ((rem == 0) || (rem == 1))
+        {
+            sum = sum + (pow(2, n)*rem);
+            bin = bin/10;
+            n++;
+        }
+        else
+        {
+            printf("You have entered invalid number\n");
+            isbin = 0;
+            break;
+        }
+    }
+    
+    if (isbin == 1)
+    {
+        printf("Decimal number is : %d\n", sum);
+    }
+    
+    return 0;
+}
+            </code></pre>
+            </div>
+
+            <h3>Python Solution :</h3>
+            <div class="line-numbers">
+                <pre><code class="language-python">
+def main():
+    bin_number = int(input("Enter a number in binary format: "))
+    decimal_number = 0
+    n = 0
+    is_binary = True
+    
+    while bin_number:
+        rem = bin_number % 10
+
+        if rem == 0 or rem == 1:
+            decimal_number += (2 ** n) * rem
+            bin_number //= 10
+            n += 1
+        else:
+            print("You have entered an invalid number")
+            is_binary = False
+            break
+
+    if is_binary:
+        print("Decimal number is:", decimal_number)
+
+if __name__ == "__main__":
+    main()
+                </code></pre>
+            </div>
+        </div>
+        
+        <h2 class="section-title">Explanation:</h2>
+        <p>
+        1. The program prompts the user to input a binary number.<br><br>
+        2. It initializes variables to store the decimal equivalent (`decimal_number`), the current power of 2 (`n`), and a flag to indicate if the input is binary (`is_binary`).<br><br>
+        3. It iterates over each digit of the binary number using a while loop.<br><br>
+        4. For each digit, it checks if it's either 0 or 1. If it's not, it sets the `is_binary` flag to False and breaks out of the loop.<br><br>
+        5. If the digit is 0 or 1, it calculates the decimal equivalent by multiplying the digit with 2 raised to the power of its position (`2 ** n`) and adds it to the `decimal_number`.<br><br>
+        6. After processing each digit, it updates the binary number by integer dividing it by 10 to remove the processed digit and increments the power `n`.<br><br>
+        7. If the input is a valid binary number (`is_binary == True`), it prints the decimal equivalent. Otherwise, it displays an error message.<br>
+        </p>
+        
+        <h2 class="section-title">Time and Space Complexity:</h2>
+<p><strong>Time Complexity:</strong> The time complexity of the given algorithm is O(log N), where N is the input binary number. This is because the number of iterations required to convert a binary number to decimal is proportional to the number of digits in the binary number, which is logarithmic.</p>
+<p><strong>Space Complexity:</strong> The space complexity is O(1), as the algorithm only requires a constant amount of additional space for variables regardless of the input size.</p>
+
+    <script src="prism.js"></script>
+</body>
+</html>

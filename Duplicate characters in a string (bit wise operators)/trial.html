@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duplicate Characters in a String</title>
+    <link rel="stylesheet" href="prism.css">
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1 class="section-title">Duplicate Characters in a String, Bitwise Operators</h1>
+        
+        <h2 class="section-title">Problem Statement:</h2>
+        <p>Read a string from the user (all lowercase alphabates) and figure out the duplicate characters or characters occured twice or more times in the string using Bitwise Operators.</p>
+        
+        <h2 class="section-title">Illustration:</h2>
+        <div class="example">
+            <h3>Example:</h3>
+            <p><strong>Enter String:</strong> kushalvardhan</p>
+            <p><strong>Output : </strong> 
+                h is a duplicate<br>
+                a is a duplicate<br>
+                a is a duplicate
+            </p>
+        </div>
+
+        <h2 class="section-title">Prerequisites:</h2>
+        <p>To understand and implement the solution, you should be familiar with the following concepts:</p>
+        <ul>
+            <li>Bitwise Operators (dont worry we explained them below)</li>
+            <li>Ascii Table, Character to integer conversion</li>
+            <li>Looping Constructs</li>
+            <li>Conditional Statements (if-else)</li>
+        </ul>
+        
+        <h2 class="section-title">Solution:</h2>
+        <div class="solution">
+            <h3>Classic C Program:</h3>
+            <div class="line-numbers">
+                <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main()
+{
+    char str[80];
+    int i, h=0, x=0;
+
+    printf("Enter your string : ");
+    gets(str);
+
+    for(i=0; str[i]!='\0'; ++i)
+    {
+        x=1;
+        x = x&lt;&lt;str[i]-97;
+
+        if(h&x)
+            printf("%c is a duplicate\n", str[i]);
+        else
+            h=x|h;
+    }
+    return 0;
+}
+                </code></pre>
+            </div>
+
+            <h3>Python Solution :</h3>
+            <div class="line-numbers">
+                <pre><code class="language-python">
+def main():
+    string = input("Enter your string: ")
+    h = 0
+    for char in string:
+        position = ord(char) - ord('a')
+        x = 1 << position
+        if h & x:
+            print(char, "is a duplicate")
+        else:
+            h = x | h
+
+if __name__ == "__main__":
+    main()
+                </code></pre>
+            </div>
+        </div>
+
+        <h2 class="section-title">Left Shift Operator (&lt;&lt;)</h2>
+<p>The left shift operator (&lt;&lt;) is a binary operator that shifts the bits of a number to the left by a specified number of positions.</p>
+
+<h3>How it Works:</h3>
+<ol>
+  <li><strong>Operand:</strong> The left operand is the number whose bits are to be shifted.</li>
+  <li><strong>Number of Positions:</strong> The right operand specifies the number of positions to shift the bits to the left.</li>
+</ol>
+
+<p>For example, consider the binary representation of the number 5:</p>
+<pre>
+5 (decimal) = 00000101 (binary)
+</pre>
+
+<p>Now, let's apply the left shift operator (&lt;&lt;) to shift the bits of 5 to the left by 2 positions:</p>
+<pre>
+5 &lt;&lt; 2
+</pre>
+
+<p>Here's what happens:</p>
+<ol>
+  <li>Each bit in the binary representation of 5 is shifted to the left by 2 positions.</li>
+  <li>Zeros are filled in from the right to fill the empty positions created by the shift.</li>
+</ol>
+
+<p>The result of shifting 5 to the left by 2 positions is:</p>
+<pre>
+5 (decimal) = 00000101 (binary)
+              -------------------
+              00010100 (binary)
+</pre>
+
+<p>Now, let's convert the resulting binary number back to decimal:</p>
+<pre>
+00010100 (binary) = 20 (decimal)
+</pre>
+
+<p>So, <code>5 &lt;&lt; 2</code> equals <code>20</code>.</p>
+
+<p>In summary, the left shift operator (&lt;&lt;) shifts the bits of a number to the left by a specified number of positions, effectively multiplying the number by 2 to the power of the specified number of positions.</p>
+
+<h2 class="section-title">Bitwise AND and OR Operators</h2>
+    <div class="explanation">
+        <h3>Bitwise AND (&amp;)</h3>
+        <p>Bitwise AND (&amp;) is a binary operation that takes two equal-length binary representations and performs the logical AND operation on each pair of corresponding bits. The result in each position is 1 if both bits are 1; otherwise, the result is 0.</p>
+        <p>For example, 5 &amp; 3:</p>
+        <ul>
+            <li>Binary representation of 5: <strong>0101</strong></li>
+            <li>Binary representation of 3: <strong>0011</strong></li>
+            <li>Performing bitwise AND:</li>
+            <li><strong>0101</strong> (5) &amp; <strong>0011</strong> (3) = <strong>0001</strong> (1)</li>
+        </ul>
+    </div>
+    <div class="explanation">
+        <h3>Bitwise OR (|)</h3>
+        <p>Bitwise OR (|) is a binary operation that takes two equal-length binary representations and performs the logical OR operation on each pair of corresponding bits. The result in each position is 1 if at least one of the bits is 1; otherwise, the result is 0.</p>
+        <p>For example, 5 | 3:</p>
+        <ul>
+            <li>Binary representation of 5: <strong>0101</strong></li>
+            <li>Binary representation of 3: <strong>0011</strong></li>
+            <li>Performing bitwise OR:</li>
+            <li><strong>0101</strong> (5) | <strong>0011</strong> (3) = <strong>0111</strong> (7)</li>
+        </ul>
+    </div>
+
+    <h2 class="section-title">Explanation:</h2>
+        <div>
+            <p><strong>Explanation of Finding Duplicates using Bitwise Operators:</strong></p>
+            <ol>
+                <li><strong>Initialize the Hash Variable (`h`):</strong> We start by initializing a variable `h` to 0. This variable will serve as a "hash" to keep track of the characters we have encountered.</li><br>
+                <li><strong>Iterate Through the String:</strong> We loop through each character in the input string.</li><br>
+                <li><strong>Calculate Bit Position:</strong> For each character, we need to determine its position in the alphabet. We do this by subtracting the ASCII value of 'a' from the ASCII value of the current character. This gives us a number between 0 and 25, corresponding to the character's position in the alphabet.</li><br>
+                <li><strong>Create a Mask with Left Shift Operator (`<<`):</strong> We use the left shift operator (`<<`) to create a bitmask for the current character. This operator shifts the binary representation of the number `1` to the left by the number of positions given by the character's position in the alphabet. For example, if the character is 'a' (position 0), `1 << 0` gives us `00000001`, if it's 'b' (position 1), `1 << 1` gives us `00000010`, and so on.</li><br>
+                <li><strong>Check for Duplicates:</strong> We use the bitwise AND operator (`&`) to check if the bit at the calculated position is already set in the hash variable `h`. If the result of the bitwise AND operation is non-zero, it means that the bit is already set, indicating that we have encountered the character before and it's a duplicate.</li><br>
+                <li><strong>Update the Hash Variable (`h`):</strong> If the character is not a duplicate, we use the bitwise OR operator (`|`) to set the bit at the calculated position in the hash variable `h`. This marks the character as encountered, allowing us to detect duplicates later in the string.</li><br>
+                <li><strong>Repeat for Each Character:</strong> We repeat steps 3-6 for each character in the string.</li>
+            </ol>
+        </div>
+
+    <h2 class="section-title">Solved Example</h2>
+    <p><strong>Let's solve for the input string "hello".</strong></p>
+    <ul>
+        <li>For the first character 'h':</li>
+        <ul>
+            <li>The position of 'h' in the alphabet is 7.</li>
+            <li>Bitwise left shift sets the 8th bit to 1: <code>x = 1 &lt;&lt; 7 = 128</code>.</li>
+            <li>Since 'h' is the first occurrence, 'h' is updated to 128.</li>
+        </ul><br><br>
+        <li>For the second character 'e':</li>
+        <ul>
+            <li>The position of 'e' in the alphabet is 4.</li>
+            <li>Bitwise left shift sets the 5th bit to 1: <code>x = 1 &lt;&lt; 4 = 16</code>.</li>
+            <li>Since 'e' is the first occurrence, 'e' is updated to 16.</li>
+        </ul><br><br>
+        <li>For the third character 'l':</li>
+        <ul>
+            <li>The position of 'l' in the alphabet is 11.</li>
+            <li>Bitwise left shift sets the 12th bit to 1: <code>x = 1 &lt;&lt; 11 = 2048</code>.</li>
+            <li>Since 'l' is the first occurrence, 'l' is updated to 2048.</li>
+        </ul><br><br>
+        <li>For the fourth character 'l':</li>
+        <ul>
+            <li>The position of 'l' in the alphabet is 11.</li>
+            <li>Bitwise left shift sets the 12th bit to 1: <code>x = 1 &lt;&lt; 11 = 2048</code>.</li>
+            <li>Since 'l' was already encountered, it is considered a duplicate.</li>
+            <li>The program prints: 'l is a duplicate'.</li>
+        </ul><br><br>
+        <li>For the fifth character 'o':</li>
+        <ul>
+            <li>The position of 'o' in the alphabet is 14.</li>
+            <li>Bitwise left shift sets the 15th bit to 1: <code>x = 1 &lt;&lt; 14 = 16384</code>.</li>
+            <li>Since 'o' is the first occurrence, 'o' is updated to 16384.</li>
+        </ul>
+    </ul>
+
+        <h2 class="section-title">Time and Space Complexity:</h2>
+        <p>The time complexity of the given logic is O(n), This complexity arises because the program iterates through each character of the input string once.
+            <br><br>
+            The space complexity of the given logic is O(n), where n is the size of the string.
+        </p>
+        
+        <h2 class="section-title">Challenge:</h2>
+        <p>If a character y occurs x times in the string, we are printing "y is a duplicate" (x-1) times. can you handle this? it should be printed only once.</p>
+    </div>
+
+    <script src="prism.js"></script>
+</body>
+</html>

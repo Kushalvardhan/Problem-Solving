@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary to Octal</title>
+    <link rel="stylesheet" href="prism.css">
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1 class="section-title">Binary to Octal (Number Conversion)</h1>
+        
+        <h2 class="section-title">Problem Statement:</h2>
+        <p>Given a Binary number in interger format. Output the equivalent Octal number.</p>
+        
+        <h2 class="section-title">Illustration:</h2>
+        <div class="example">
+            <h3>Example:</h3>
+            <p><strong>Binary Number:</strong> 101110101</p>
+            <p><strong>Explanation:</strong> 
+                Starting from the rightmost side, we group the binary digits into sets of three: (101) (110) (101).
+                Converting each group of three binary digits to its octal equivalent:<br>
+                - (101) in binary is equivalent to (5) in octal.<br>
+                - (110) in binary is equivalent to (6) in octal.<br>
+                - (101) in binary is equivalent to (5) in octal.<br>
+                Concatenating the octal representations: 565.<br>
+                Therefore, the octal equivalent of the binary number 101110101 is 565.
+            </p>
+        </div>
+        <hr>
+        <table border="1" style="margin-top:20px;">
+            <h2 class="section-title">Binary to Octal Conversion Table</h2>
+            <tr>
+                <th>Binary</th>
+                <th>Octal</th>
+            </tr>
+            <tr>
+                <td>000</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>001</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>010</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>011</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>100</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>101</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>110</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>111</td>
+                <td>7</td>
+            </tr>
+        </table>
+        
+    <hr>
+        <h2 class="section-title">Prerequisites:</h2>
+        <p>To understand and implement the solution, you should be familiar with the following concepts:</p>
+        <ul>
+            <li>Arithmetic Operations (%, +, *, /)</li>
+            <li>Number conversions</li>
+            <li>Looping Constructs</li>
+            <li>Conditional Statements (if-else)</li>
+        </ul>
+        
+        <h2 class="section-title">Solution:</h2>
+        <div class="solution">
+            <h3>Classic C Program:</h3>
+            <div class="line-numbers">
+                <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int octal(int bin)
+{
+    int n, sum=0, p=1;
+    int octarr[] = {0, 1, 10, 11, 100, 101, 110, 111};
+
+    while (bin)
+    {
+        n = bin%1000;
+
+        for (int i = 0; i<8; ++i)
+        {
+            if(octarr[i]==n)
+            {
+                sum = sum + i*p;
+                break;
+            }
+        }
+        bin = bin/1000;
+        p = p*10;
+    }
+    return sum;
+}
+
+int main()
+{
+    int bin, oct;
+    printf("Enter your Binary Number : ");
+    scanf("%d", &bin);
+
+    printf("The Octal Equivalent of %d is : %d", bin, octal(bin));
+    return 0;
+}
+                </code></pre>
+
+            </div>
+            <h3>Python Solution :</h3>
+            <div class="line-numbers">
+                <pre><code class="language-python">
+def octal(bin):
+    octarr = {0: 0, 1: 1, 10: 2, 11: 3, 100: 4, 101: 5, 110: 6, 111: 7}
+    sum = 0
+    p = 1
+
+    while bin:
+        n = bin % 1000
+        for key, value in octarr.items():
+            if key == n:
+                sum += value * p
+                break
+        bin //= 1000
+        p *= 10
+
+    return sum
+
+if __name__ == "__main__":
+    bin = int(input("Enter your Binary Number : "))
+    print("The Octal Equivalent of", bin, "is :", octal(bin))
+                </code></pre>
+            </div>
+        </div>
+        
+        <h2 class="section-title">Explanation:</h2>
+        <p>
+            1. The program prompts the user to input a binary number.<br>
+            2. Inside the `octal` function (or equivalent), it initializes a dictionary (C: array) containing the octal equivalents of all possible 3-bit binary patterns.<br>
+            3. Using a while loop, the program iterates through the binary number, grouping the binary digits into sets of three from right to left.<br>
+            4. Within the loop, it looks up each group of three binary digits in the dictionary (C: array) to find its corresponding octal value.<br>
+            5. The octal digits are then multiplied by the appropriate power of 10 and summed to form the final octal equivalent.<br>
+            6. After processing all groups of three binary digits, the resulting octal number is returned.<br>
+            7. Finally, the program prints the octal equivalent of the input binary number.<br>       
+        </p>
+            
+        <h2 class="section-title">Time and Space Complexity:</h2>
+        <p>The time complexity of the given logic is O(log₈(bin)), where bin is the input binary number. 
+            This is because the number of iterations in the while loop is determined by the number of digits in the binary number, 
+            and each iteration processes a group of three binary digits, resulting in a logarithmic time complexity with base 8.
+            <br><br>
+            The space complexity of the given logic is O(1), as the space required remains constant regardless of the input size. 
+            This is because the space complexity is not affected by the input size; the program uses a fixed number of variables and does 
+            not allocate additional memory based on the input size.
+        </p>
+        
+        <h2 class="section-title">Challenge:</h2>
+        <p>Try reverse. Take Octal number as input and convert it into its binary representation.</p>
+        <p><strong>Hint:</strong>convert octal to decimal then decimal to binary... (just one possible bruteforce way)</p>
+    </div>
+
+    <script src="prism.js"></script>
+</body>
+</html>

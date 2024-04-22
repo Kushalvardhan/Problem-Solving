@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete duplicates</title>
+    <link rel="stylesheet" href="prism.css">
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1 class="section-title">Delete Duplicate Elements In An Array</h1>
+        
+        <h2 class="section-title">Problem Statement:</h2>
+        <p>Read an array of integers from the user and Delete all the duplicate elements from it.</p>
+        
+        <h2 class="section-title">What to do??</h2>
+            <div class="example">
+                <p>
+                <Strong>Input:</Strong><br>
+                Enter your array size : 10<br>
+                Enter array elements : 1 2 3 4 2 6 2 8 9 3<br>
+                <br>
+                <Strong>Output: 1 2 3 4 6 8 9</Strong>
+                <br>
+                </p>
+            </div>
+
+        <h2 class="section-title">Prerequisites:</h2>
+        <p>To understand and implement the solution, you should be familiar with the following concepts:</p>
+        <ul>
+            <li>Arrays, shifting elements</li>
+            <li>Looping</li>
+        </ul>
+
+        <h2 class="section-title">Solution:</h2>
+        <div class="solution">
+            <h3>Classic C Program:</h3>
+            <div class="line-numbers">
+                <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main(){
+    int arr[100];
+    int i, j, k, l, size, pos;
+
+    printf("Enter number of elements  : ");
+    scanf("%d", &size);
+    printf("Enter array elements : ");
+
+    for (i=0; i&lt;size; ++i){
+        scanf("%d", &arr[i]);
+    }
+
+    for (i=0; i&lt;size; ++i){
+        for (j=i+1; j&lt;size; ++j){
+            if (arr[i] == arr[j])
+            {
+                for (k=j; k&lt;size; ++k){
+                    arr[k] = arr[k+1];
+                }
+                size--;
+                j--;
+            }
+        }
+    }
+
+    for (i=0; i&lt;size; ++i){
+        printf("%d ", arr[i]);
+    }
+
+    return 0;
+}
+            </code></pre>
+        </div>
+    </div>
+
+        <h2 class="section-title">Explanation:</h2>
+            <p>
+                1) The program iterates through each element of the array.<br><br>
+                2) For each element at index i, it compares with all the elements at indices greater than i to check for duplicates.<br><br>
+                3) If a duplicate is found at index j, it shifts all elements from index j+1 to the end of the array one position to the left to remove the duplicate.<br><br>
+                4) The variable size is decremented to reflect the removal of the duplicate element.<br><br>
+                5) The inner loop index j is decremented to recheck the current index i with the next element after shifting.<br><br>
+
+                This approach ensures that only unique elements remain in the array after processing.
+
+                This solution effectively removes duplicates from the array by shifting elements and adjusting the size 
+                of the array accordingly. However, this approach may not be the most efficient for large arrays with many 
+                duplicates, as it involves nested loops and shifting elements.
+            </p>
+        
+            <h2 class="section-title">Time and Space Complexity:</h2>
+                <p><strong>Time Complexity:</strong>O(n^2), where n is the number of elements in the array.</p>
+                <p><strong>Space Complexity:</strong>O(n), where n is the number of elements in the array. ofcourse we declared the maxsize as 100. so you may say the space complexity is O(1) but generally speaking, it's O(n)</p>
+
+            <h2 class="section-title">Challenge:</h2>
+            <p>Implement the pop(), remove(), append(), removeAll() functions in C which mimics the python list methods. </p>
+    </div>
+    <script src="prism.js"></script>
+</body>
+</html>

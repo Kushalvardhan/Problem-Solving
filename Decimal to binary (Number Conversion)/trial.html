@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decimal to Binary</title>
+    <link rel="stylesheet" href="prism.css">
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1 class="section-title">Decimal to Binary</h1>
+        
+        <h2 class="section-title">Problem Statement:</h2>
+        <p>Given a decimal number. Output it's Binary equivalent.</p>
+        
+        <h2 class="section-title">What to do??</h2>
+            <div class="example">
+                <p>
+                <Strong>Input:</Strong><br>
+                Enter your Decimal Number : 13<br>
+                <br>
+                <Strong>Output:</Strong>
+                1101
+                <br>
+                <Strong>13 is written as 1101 in binary.</Strong><br>
+                </p>
+            </div>
+
+        <h2 class="section-title">Prerequisites:</h2>
+        <p>To understand and implement the solution, you should be familiar with the following concepts:</p>
+        <ul>
+            <li>Basic arithmetic operations.</li>
+            <li>Number conversions.</li>
+        </ul>
+
+        <h2 class="section-title">Solution:</h2>
+        <div class="solution">
+            <h3>Classic C Program:</h3>
+            <div class="line-numbers">
+                <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+long long int bin(int deci){
+    int p=1, sum=0;
+
+    while(deci){
+        sum = sum + (deci%2)*p;
+        deci = deci/2;
+        p=p*10;
+    }
+    return sum;
+}
+
+int main(){
+    int deci;
+
+    printf("Enter your Decimal Number : ");
+    scanf("%d", &deci);
+
+    printf("The Binary Equivalent of %d is : %lld", deci, bin(deci));
+
+    return 0;
+}
+            </code></pre>
+            </div>
+
+            <h3>Python Solution :</h3>
+            <div class="line-numbers">
+                <pre><code class="language-python">
+def bin(deci):
+    p = 1
+    sum = 0
+    while deci:
+        sum = sum + (deci % 2) * p
+        deci = deci // 2
+        p = p * 10
+    return sum
+
+deci = int(input("Enter your Decimal Number : "))
+print("The Binary Equivalent of", deci, "is :", bin(deci))
+                </code></pre>
+            </div>
+        </div>
+        <h2 class="section-title">Explanation:</h2>
+            <p>
+1. To convert a decimal number to binary, we start by initializing two variables: `p` and `sum`.<br><br>
+2. `p` represents the position of the current binary digit we're evaluating, starting from the rightmost (least significant) digit. We initialize it to 1, as it corresponds to the 2^0 position.<br><br>
+3. `sum` will hold the binary representation of the decimal number.<br><br>
+4. We enter a loop that continues until the decimal number becomes zero.<br><br>
+5. Within each iteration of the loop:<br><br>
+   - We calculate the least significant bit (LSB) of the binary representation by taking the remainder of the decimal number divided by 2.<br>
+   - We add this LSB, multiplied by the current position `p`, to the `sum`.<br>
+   - We update the decimal number by removing its LSB (by integer division by 2), as we've already processed it.<br>
+   - We update the position `p` by multiplying it by 10, moving to the next position to the left.<br><br>
+6. After the loop completes, `sum` contains the binary representation of the decimal number.<br><br>
+7.This logic iteratively extracts the binary digits of the decimal number, starting from the least significant bit, and constructs the binary representation bit by bit.
+            </p>
+            
+            <h2 class="section-title">Let's trace the program with a numerical example :</h2>
+<div class="example">
+    <p> Let's convert the decimal number 13 to binary:</p>
+    <ol>
+        <li>Initialize <strong>p</strong> as 1 and <strong>sum</strong> as 0.</li>
+        <br>
+        <li>In the first iteration:
+            <ul>
+                <li><strong>deci</strong> = 13</li>
+                <li>Calculate <strong>(13 % 2) * p = (1) * 1 = 1</strong></li>
+                <li>Add the result to <strong>sum</strong>: <strong>sum = 0 + 1 = 1</strong></li>
+                <li>Update <strong>deci</strong> by integer division: <strong>deci = 13 / 2 = 6</strong></li>
+                <li>Update <strong>p</strong>: <strong>p = 10</strong></li>
+            </ul>
+        </li>
+        <br>
+        <li>In the second iteration:
+            <ul>
+                <li><strong>deci</strong> = 6</li>
+                <li>Calculate <strong>(6 % 2) * p = (0) * 10 = 0</strong></li>
+                <li>Add the result to <strong>sum</strong>: <strong>sum = 1 + 0 = 1</strong></li>
+                <li>Update <strong>deci</strong>: <strong>deci = 6 / 2 = 3</strong></li>
+                <li>Update <strong>p</strong>: <strong>p = 100</strong></li>
+            </ul>
+        </li>
+        <br>
+        <li>In the third iteration:
+            <ul>
+                <li><strong>deci</strong> = 3</li>
+                <li>Calculate <strong>(3 % 2) * p = (1) * 100 = 100</strong></li>
+                <li>Add the result to <strong>sum</strong>: <strong>sum = 1 + 100 = 101</strong></li>
+                <li>Update <strong>deci</strong>: <strong>deci = 3 / 2 = 1</strong></li>
+                <li>Update <strong>p</strong>: <strong>p = 1000</strong></li>
+            </ul>
+        </li>
+        <br>
+        <li>In the fourth iteration:
+            <ul>
+                <li><strong>deci</strong> = 1</li>
+                <li>Calculate <strong>(1 % 2) * p = (1) * 1000 = 1000</strong></li>
+                <li>Add the result to <strong>sum</strong>: <strong>sum = 101 + 1000 = 1101</strong></li>
+                <li>Update <strong>deci</strong>: <strong>deci = 1 / 2 = 0</strong></li>
+                <li>Update <strong>p</strong>: <strong>p = 10000</strong></li>
+            </ul>
+        </li>
+        <br>
+        <li>The loop terminates since <strong>deci</strong> becomes 0.</li>
+        <br>
+        <li>The final binary equivalent is <strong>1101</strong>.</li>
+    </ol>
+</div>
+
+
+            <h2 class="section-title">Time and Space Complexity:</h2>
+            <p><strong>Time Complexity:</strong>O(log N), where N is the decimal number.<br>In each iteration of the loop, the decimal number is divided by 2.
+                The number of iterations required is proportional to the number of bits required to represent the decimal number in binary, which is log(N) base 2.</p>
+            <p><strong>Space Complexity:</strong>O(1) because the algorithm uses a constant amount of extra space, regardless of the input size. This constant space is used to store variables such as p, sum, and deci.</p>
+
+            <h2 class="section-title">Challenge:</h2>
+            <p>Try reverse. Take a binary number and output it's decimal equivalent.</p>
+    </div>
+    <script src="prism.js"></script>
+</body>
+</html>

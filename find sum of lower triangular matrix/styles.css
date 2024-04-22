@@ -1,0 +1,75 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #222;
+    color: #fff;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: #333;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.section-title {
+    margin-top: 0;
+    color: #ff7b00;
+}
+
+.matrix {
+    display: inline-block;
+    background-color: #333;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.matrix table {
+    border-collapse: collapse;
+}
+
+.matrix td, .matrix th {
+    border: 1px solid #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+.matrix .lt {
+    background-color: #ff7b00;
+}
+
+.matrix .diag {
+    background-color: transparent;
+}
+
+.solution {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.solution p {
+    margin: 0;
+    color: #fff;
+}
+
+.code {
+    background-color: #222;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+.code pre {
+    margin: 0;
+}
+
+.code pre code {
+    display: block;
+    white-space: pre;
+}
