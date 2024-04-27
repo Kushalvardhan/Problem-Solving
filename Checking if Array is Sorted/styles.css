@@ -88,3 +88,19 @@ body {
     margin: 0 10px; /* Add some space between images */
 }
 
+
+/* Media query for small screens (typical mobile screens) */
+@media only screen and (max-width: 600px) {
+    .image-container {
+        flex-wrap: wrap; /* Allow images to wrap to the next line */
+    }
+    
+    .animal-image {
+        width: 80px;
+        height: 80px;
+        margin: 5px; /* Adjust margin for smaller screens */
+    }
+}
+
+
+
