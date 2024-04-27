@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>left-aligned right triangle</title>
+    <link rel="stylesheet" href="prism.css">
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1 class="section-title">left-aligned right triangle pattern</h1>
+        
+        <h2 class="section-title">Problem Statement:</h2>
+        <p>Write a C program that generates a left-aligned right triangle pattern '#' symbols.</p>
+        
+        <h2 class="section-title">Illustration:</h2>
+        <div class="example">
+            <p>Enter no of rows : 5</p>
+            <p><strong>Output Pattern:</strong></p>
+                <pre>
+#
+# #
+# # #
+# # # #
+# # # # #
+
+            </pre>
+        </div>
+
+        <h2 class="section-title">Prerequisites:</h2>
+        <p>To understand and implement the solution, you should be familiar with the following concepts:</p>
+        <ul>
+            <li>Basics of loops, Nested loops</li>
+        </ul>
+        
+        <h2 class="section-title">Solution:</h2>
+        <div class="solution">
+            <h3>Classic C Program:</h3>
+            <div class="line-numbers">
+                <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+/*
+
+#
+# #
+# # #
+# # # #
+# # # # #
+
+*/
+
+int main(){
+    int row, i, col, j;
+
+    printf("Enter number of rows : ");
+    scanf("%d", &row);
+
+    for (i = 1; i <= row; i++){
+        for (j=1; j <= i; j++){
+            printf("# ");
+        }
+        printf("\n");
+    }
+    return 0;
+}
+            </code></pre>
+            </div>
+            <h3>Python Solution :</h3>
+            <div class="line-numbers">
+                <pre><code class="language-python">
+row = int(input("Enter number of rows : "))
+
+for i in range(1, row + 1):
+    for j in range(1, i + 1):
+        print("# ", end="")
+    print()
+                </code></pre>
+            </div>
+        </div>
+        
+        <h2 class="section-title">Explanation:</h2>
+        <p>
+1. Prompt the user to enter the number of rows for the pattern.<br><br>
+2. Use nested loops to iterate over each row and column.<br><br>
+3. In the outer loop, iterate over the rows from 1 to the user-specified number.<br><br>
+4. In the inner loop, iterate over the columns from 1 to the current row number.<br><br>
+5. Print '#' symbol for each column.<br><br>
+6. After printing '#' symbols for each row, move to the next line.<br><br>
+        </p>
+
+        <div class="matrix">
+            <table>
+                <tr>
+                    <th class="index"></th>
+                    <td class="index">j = 0</td>
+                    <td class="index">j = 1</td>
+                    <td class="index">j = 2</td>
+                    <td class="index">j = 3</td>
+                </tr>
+                <tr>
+                    <td class="index">i = 0</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>#</td>
+                </tr>
+                <tr>
+                    <td class="index">i = 1</td>
+                    <td></td>
+                    <td></td>
+                    <td>#</td>
+                    <td>#</td>
+                </tr>
+                <tr>
+                    <td class="index">i = 2</td>
+                    <td></td>
+                    <td>#</td>
+                    <td>#</td>
+                    <td>#</td>
+                </tr>
+                <tr>
+                    <td class="index">i = 3</td>
+                    <td>#</td>
+                    <td>#</td>
+                    <td>#</td>
+                    <td>#</td>
+                </tr>
+            </table>
+        </div>
+        
+        
+            
+        <h2 class="section-title">Time and Space Complexity:</h2>
+        <p>Time Complexity: O(n^2), where n is the number of rows. This is because there are nested loops to print each '#' symbol.
+            <br><br>
+            Space Complexity: O(1), as the space required is constant, independent of the input size.
+        </p>
+        
+        <h2 class="section-title">Challenge:</h2>
+        <p>An additional challenge could be to modify the program to allow the user to specify the symbol used for the grid (e.g., '*', '+', '-', etc.) and customize the grid's size and appearance.</p>
+        <p><strong>Hint:</strong>None</p>
+    </div>
+    <br>
+    <div class="container">
+        <h1 class="section-title">Eating is not just about what's on your plate, but what's in your heart.</h1>
+        <p>"Every time we sit down to eat, we have the opportunity to choose compassion over cruelty, kindness over violence, and love over indifference. By embracing vegetarianism, we not only nourish our bodies but also our souls, and in doing so, we sow the seeds of a more peaceful and compassionate world for all beings."</p>
+        <center><h2 class="section-title">Be A Vegetarian</h2></center>
+        <div class="image-container">
+            <img src="animal1.jpg" alt="Animal 1" class="animal-image">
+            <img src="animal2.jpg" alt="Animal 2" class="animal-image">
+            <img src="animal3.jpg" alt="Animal 3" class="animal-image">
+            <img src="animal4.jpg" alt="Animal 4" class="animal-image">
+        </div>
+    </div>
+    
+    <script src="prism.js"></script>
+</body>
+</html>

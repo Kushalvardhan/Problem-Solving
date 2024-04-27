@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Square Grid</title>
+    <link rel="stylesheet" href="prism.css">
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1 class="section-title">Square Grid</h1>
+        
+        <h2 class="section-title">Problem Statement:</h2>
+        <p>Write a C program that generates a square grid pattern with '#' symbols.</p>
+        
+        <h2 class="section-title">Illustration:</h2>
+        <div class="example">
+            <p>Enter no of rows : 4</p>
+            <p><strong>Output Pattern:</strong></p>
+                <pre>
+# # # #
+# # # #
+# # # #
+# # # #
+            </pre>
+        </div>
+
+        <h2 class="section-title">Prerequisites:</h2>
+        <p>To understand and implement the solution, you should be familiar with the following concepts:</p>
+        <ul>
+            <li>Basics of loops, Nested loops</li>
+        </ul>
+        
+        <h2 class="section-title">Solution:</h2>
+        <div class="solution">
+            <h3>Classic C Program:</h3>
+            <div class="line-numbers">
+                <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+/*
+# # # #
+# # # #
+# # # #
+# # # #
+*/
+
+int main()
+{
+    int row, i, col, j;
+    printf("Enter number of rows : ");
+    scanf("%d", &row);
+
+    col = row;
+
+    for (i = 1; i <= row; i++)
+    {
+        for (j = 1; j <= col; j++)
+        {
+            printf("# ");
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+            </code></pre>
+            </div>
+            <h3>Python Solution :</h3>
+            <div class="line-numbers">
+                <pre><code class="language-python">
+def square_grid(n):
+    for i in range(n):
+        for j in range(n):
+            print("# ", end="")
+        print()
+
+row = int(input("Enter number of rows: "))
+square_grid(row)
+                </code></pre>
+            </div>
+        </div>
+        
+        <h2 class="section-title">Explanation:</h2>
+        <p>
+1. It utilizes a nested loop structure to iterate over each row and column of the grid.<br><br>
+2. The outer loop, controlled by the variable `i`, iterates over the rows of the grid.<br><br>
+3. Within each row, the inner loop, controlled by the variable `j`, iterates over the columns of the grid.<br><br>
+4. Inside the inner loop, the function prints the character `"# "` to represent each cell of the grid.<br><br>
+5. After printing all the characters in a row, the function moves to the next line, effectively shifting to the next row.<br><br>
+6. This process repeats for each row until the entire grid is printed.<br><br>
+        </p>
+
+        <div class="matrix">
+            <table>
+                <tr>
+                    <th class="index"></th>
+                    <td class="index">j = 0</td>
+                    <td class="index">j = 1</td>
+                    <td class="index">j = 2</td>
+                    <td class="index">j = 3</td>
+                </tr>
+                <tr>
+                    <td class="index">i = 0</td>
+                    <td>#</td>
+                    <td>#</td>
+                    <td>#</td>
+                    <td>#</td>
+                </tr>
+                <tr>
+                    <td class="index">i = 1</td>
+                    <td>#</td>
+                    <td>#</td>
+                    <td>#</td>
+                    <td>#</td>
+                </tr>
+                <tr>
+                    <td class="index">i = 2</td>
+                    <td>#</td>
+                    <td>#</td>
+                    <td>#</td>
+                    <td>#</td>
+                </tr>
+                <tr>
+                    <td class="index">i = 3</td>
+                    <td>#</td>
+                    <td>#</td>
+                    <td>#</td>
+                    <td>#</td>
+                </tr>
+            </table>
+        </div>
+        
+            
+        <h2 class="section-title">Time and Space Complexity:</h2>
+        <p>Time Complexity: O(n^2), where n is the number of rows (or columns) in the grid. This is because the program iterates over each cell in the grid using nested loops.
+            <br><br>
+            Space Complexity: O(1), as the program only uses a constant amount of memory for variables regardless of the grid size.
+        </p>
+        
+        <h2 class="section-title">Challenge:</h2>
+        <p>An additional challenge could be to modify the program to allow the user to specify the symbol used for the grid (e.g., '*', '+', '-', etc.) and customize the grid's size and appearance.</p>
+        <p><strong>Hint:</strong>None</p>
+    </div>
+    <br>
+    <div class="container">
+        <h1 class="section-title">Eating is not just about what's on your plate, but what's in your heart.</h1>
+        <p>"Every time we sit down to eat, we have the opportunity to choose compassion over cruelty, kindness over violence, and love over indifference. By embracing vegetarianism, we not only nourish our bodies but also our souls, and in doing so, we sow the seeds of a more peaceful and compassionate world for all beings."</p>
+        <center><h2 class="section-title">Be A Vegetarian</h2></center>
+        <div class="image-container">
+            <img src="../photos/lamb.jpg" alt="Animal 1" class="animal-image">
+            <img src="../photos/chicks.png" alt="Animal 2" class="animal-image">
+            <img src="../photos/piglet.jpg" alt="Animal 3" class="animal-image">
+            <img src="../photos/bunny.jpg" alt="Animal 4" class="animal-image">
+        </div>
+    </div>
+    
+    <script src="prism.js"></script>
+</body>
+</html>

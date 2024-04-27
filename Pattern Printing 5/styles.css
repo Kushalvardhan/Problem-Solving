@@ -1,0 +1,89 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #222;
+    color: #fff;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: #333;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.section-title {
+    margin-top: 0;
+    color: #ff7b00;
+}
+
+.matrix {
+    display: inline-block;
+    background-color: #333;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.matrix table {
+    border-collapse: collapse;
+}
+
+.matrix td, .matrix th {
+  font-weight: bold;
+    border: 2px solid #fff;
+    padding: 10px;
+    text-align: center;
+    background-color:#DE2914;
+}
+
+.matrix .index {
+    font-weight: bold;
+    border: 0px solid #fff;
+    background-color: #ff7b00;
+}
+
+.solution {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.solution p {
+    margin: 0;
+    color: #fff;
+}
+
+.code {
+    background-color: #222;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+.code pre {
+    margin: 0;
+}
+
+.code pre code {
+    display: block;
+    white-space: pre;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.animal-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%; /* Make the images circular */
+    margin: 0 10px; /* Add some space between images */
+}
+
