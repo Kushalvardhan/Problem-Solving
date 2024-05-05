@@ -73,6 +73,7 @@ body {
     display: block;
     white-space: pre;
 }
+
 .image-container {
     display: flex;
     justify-content: center;

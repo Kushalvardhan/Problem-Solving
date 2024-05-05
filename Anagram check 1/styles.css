@@ -74,6 +74,20 @@ body {
     white-space: pre;
 }
 
+@media only screen and (max-width: 600px) {
+    .solution, .code {
+        padding: 15px; /* Adjust padding for smaller screens */
+        margin-bottom: 15px; /* Adjust margin for smaller screens */
+    }
+    
+    .solution p {
+        font-size: 14px; /* Adjust font size for smaller screens */
+    }
+    
+    .code {
+        font-size: 14px; /* Adjust font size for smaller screens */
+    }
+}
 
 .image-container {
     display: flex;
