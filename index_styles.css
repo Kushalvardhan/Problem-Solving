@@ -1,50 +1,56 @@
 body {
-    font-family: 'Courier New', Courier, monospace;
-    background-color: #222;
-    color: #fff;
+    font-family: 'Roboto Mono', monospace;
+    background-image: url('photos/wallpaper2.jpg');
+    background-size: cover; /* Adjust as needed */
+    background-position: center; /* Adjust as needed */
+    color: rgb(202, 227, 7);
     padding: 20px;
 }
+
 .container {
     max-width: 800px;
     margin: auto;
     background: #333;
     padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgba(0,0.1,0.1,0.1);
 }
+
+.container h1, 
 .container h2 {
-    color: #ff7b00;
+    color: rgb(202, 227, 7);
     margin-top: 0;
 }
+
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
+
 th, td {
     padding: 10px;
     text-align: center;
-    border: 2px solid #ff7b00;
+    border: 2px solid #8df410;
 }
+
 th {
-    background-color: #ff7b00;
+    background-color: rgb(202, 227, 7);
 }
+
 tr:hover {
     background-color: #f5f5f5;
 }
+
 a {
     text-decoration: none;
-    color: #ff7b00;
+    color: #1ff410;
     font-weight: bold;
 }
 
 .section-title {
     margin-top: 0;
-    color: #ff7b00;
-}
-
-body {
-    font-family: 'Courier New', Courier, monospace;
+    color: rgb(202, 227, 7);
 }
 
 .image-container {
@@ -70,8 +76,7 @@ body {
     font-size: 16px;
 }
 
-
-/*images Ben 10*/
+/* Images Ben 10 */
 
 .alien-image {
     width: 100px;
@@ -114,5 +119,3 @@ body {
         margin-bottom: 15px; /* Adjust margin for smaller screens */
     }
 }
-
-
